@@ -34,7 +34,7 @@ public class Product implements Orderable {
                 "Producto: %s \n" +
                 "Descripción: %s \n" +
                 "Precio: %.2f \n"
-            ,name, price, description);
+            ,name, description, price);
     }
     
     public String getStoreDetail() {
@@ -43,7 +43,7 @@ public class Product implements Orderable {
                 "Cantidad: %d \n" +
                 "Descripción: %s \n" +
                 "Precio: %.2f \n"
-            ,name, quantity, price, description);
+            ,name, quantity, description, price);
     }
 
     public int getQuantity() {
