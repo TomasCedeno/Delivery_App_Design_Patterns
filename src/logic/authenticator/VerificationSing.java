@@ -9,7 +9,6 @@ public class VerificationSing extends Authenticator{
     public User auth(String email, String password) {  
         // Verifica que NO existan usuarios con el email especificados
         if(email.equals("email")) { return null; }
-        else { setNext(new SingUp()); }
                
         return next.auth(email, password);
     }

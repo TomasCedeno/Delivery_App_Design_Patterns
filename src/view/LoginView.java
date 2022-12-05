@@ -131,6 +131,7 @@ public class LoginView extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         logreg = new VerificationLog();
+        logreg.setNext(new Login());
         User user = logreg.auth(this.tfEmail.getText(), this.tfPassword.getText());
         if(user == null) { Out.show("Datos incorrectos o usuario inexistente."); }
         else{
@@ -141,8 +142,9 @@ public class LoginView extends javax.swing.JFrame {
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         logreg = new VerificationSing();
+        logreg.setNext(new SingUp());
         User user = logreg.auth(this.tfEmail.getText(), this.tfPassword.getText());
-        if(user == null) { Out.show("Datos incorrectos o usuario ya existente."); }
+        if(user == null) { Out.show("Usuario ya existente."); }
         else{
             this.dispose();
             Out.show("Puntos en la cuenta del usuario: "+user.getAccount().getPoints());
