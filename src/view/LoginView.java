@@ -32,7 +32,7 @@ public class LoginView extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         tfPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
-        btnLogin1 = new javax.swing.JButton();
+        btnSingUp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,11 +56,11 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
-        btnLogin1.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
-        btnLogin1.setText("Registrarse");
-        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
+        btnSingUp.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
+        btnSingUp.setText("Registrarse");
+        btnSingUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogin1ActionPerformed(evt);
+                btnSingUpActionPerformed(evt);
             }
         });
 
@@ -88,7 +88,7 @@ public class LoginView extends javax.swing.JFrame {
                                         .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLoginLayout.createSequentialGroup()
                                 .addGroup(jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnLogin1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSingUp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(80, 80, 80)))))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -111,7 +111,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLogin1)
+                .addComponent(btnSingUp)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -140,7 +140,7 @@ public class LoginView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+    private void btnSingUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSingUpActionPerformed
         logreg = new VerificationSing();
         logreg.setNext(new SingUp());
         User user = logreg.auth(this.tfEmail.getText(), this.tfPassword.getText());
@@ -149,47 +149,12 @@ public class LoginView extends javax.swing.JFrame {
             this.dispose();
             Out.show("Puntos en la cuenta del usuario: "+user.getAccount().getPoints());
         }
-    }//GEN-LAST:event_btnLogin1ActionPerformed
+    }//GEN-LAST:event_btnSingUpActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnSingUp;
     private javax.swing.JPanel jpLogin;
     private javax.swing.JLabel lblAppTitle;
     private javax.swing.JLabel lblEmail;
