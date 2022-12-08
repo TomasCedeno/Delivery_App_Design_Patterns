@@ -2,12 +2,9 @@ package logic.product;
 
 public class Product implements Orderable {
 
-    private String name;
-    private int id;
+    private String name, imagePath, description, color, brand;
+    private int id, quantity;
     private double price;
-    private int quantity;
-    private String imagePath; //Se puede cambiar por un campo de tipo imagen (Image)
-    private String description;
 
     public Product(int id, String name, double price, int quantity, String imagePath, String description) {
         this.name = name;
@@ -46,12 +43,64 @@ public class Product implements Orderable {
             ,name, quantity, description, price);
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     @Override

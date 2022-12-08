@@ -2,7 +2,7 @@
 package logic.account;
 
 public class Account implements AbstractAccount {      
-    private int points;
+    private int id, points;
     private PaymentMethod paymentMethod;
     
     public Account() { points = 0; }
@@ -17,6 +17,14 @@ public class Account implements AbstractAccount {
         return answer;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public int getPoints() {
         return this.points;
