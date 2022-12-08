@@ -3,6 +3,7 @@ package logic.account;
 
 public class Account implements AbstractAccount {      
     private int id, points;
+    String userId;
     private PaymentMethod paymentMethod;
     
     public Account() { points = 0; }
@@ -23,6 +24,14 @@ public class Account implements AbstractAccount {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     
     @Override

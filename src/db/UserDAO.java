@@ -50,6 +50,7 @@ public class UserDAO {
     
     public User getByIdentification(String userId){
         try {
+            user = null;
             preQuery = connection.prepareStatement(QUERIES[1]);
             
             preQuery.setString(1, userId);
@@ -73,6 +74,7 @@ public class UserDAO {
     
     public User getByEmail(String email){
         try {
+            user = null;
             preQuery = connection.prepareStatement(QUERIES[2]);
             
             preQuery.setString(1, email);

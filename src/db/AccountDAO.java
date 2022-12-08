@@ -15,8 +15,8 @@ public class AccountDAO {
     private Account account;
     
     private final String[] QUERIES = {
-        "INSERT INTO account (id, points) VALUES (?,?);",
-        "SELECT id, points FROM account WHERE id = ?:",
+        "INSERT INTO account (user_id, points) VALUES (?, ?);",
+        "SELECT id, user_id, points FROM account WHERE id = ?;",
         "UPDATE account SET points = ? WHERE id = ?;"
     };
     
@@ -27,9 +27,9 @@ public class AccountDAO {
     
     public boolean create(Account account){
         try {
-            preQuery = connection.prepareStatement(QUERIES[1]);
+            preQuery = connection.prepareStatement(QUERIES[0]);
             
-            preQuery.setInt(1, account.getId());
+            preQuery.setString(1, account.getUserId());
             preQuery.setInt(2, account.getPoints());
             
             if (preQuery.executeUpdate() > 0){
@@ -44,6 +44,7 @@ public class AccountDAO {
     
     public Account get(int accountId){
         try {
+            account = null;
             preQuery = connection.prepareStatement(QUERIES[1]);
 
             preQuery.setInt(1, accountId);
@@ -51,6 +52,7 @@ public class AccountDAO {
 
             if (data.next()) {
                 account.setId(data.getInt("id"));
+                account.setUserId(data.getString("user_id"));
                 account.setPoints(data.getInt("points"));
             }
 

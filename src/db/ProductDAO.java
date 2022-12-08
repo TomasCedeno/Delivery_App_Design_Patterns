@@ -77,6 +77,7 @@ public class ProductDAO {
     
     public Product getByNameColorBrand(String name, String color, String brand){
         try {
+            product = null;
             preQuery = connection.prepareStatement(QUERIES[2]);
 
             preQuery.setString(1, name);
