@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import logic.account.Account;
 import logic.account.User;
 import logic.product.Product;
+import logic.product.Purchase;
 
 
 public class DBFacade {
@@ -11,11 +12,13 @@ public class DBFacade {
     private AccountDAO accountDAO;
     private UserDAO userDAO;
     private ProductDAO productDAO;
+    private PurchaseDAO purchaseDAO;
 
     public DBFacade() {
         this.accountDAO = new AccountDAO();
         this.userDAO = new UserDAO();
         this.productDAO = new ProductDAO();
+        this.purchaseDAO = new PurchaseDAO();
     }
     
     /**
@@ -51,11 +54,49 @@ public class DBFacade {
         return user.getPassword().equals(password);
     }
     
+    /**
+     * 
+     * @return todos los productos existentes en la base de datos
+     */
     public ArrayList<Product> getProducts() {
         return productDAO.getAll();
     }
     
+    /**
+     * 
+     * @param userId
+     * @return el objeto del usuario asociado con el id pasado por parametro
+     */
     public User getUser(String userId){
         return userDAO.getByIdentification(userId);
     }
+    
+    public boolean createPurchase(Purchase purchase){
+        boolean created = purchaseDAO.create(purchase);
+        
+        purchase.getProducts().forEach(product -> {
+            purchaseDAO.addProduct(purchase.getId(), product.getId());
+        });
+        
+        return created;
+    }
+    
+    /**
+     * 
+     * @param accountId
+     * @return todas las compras realizadas por la cuenta con id pasado por parametro
+     */
+    public ArrayList<Purchase> getPurchasesByAccount(int accountId) {
+        ArrayList<Purchase> purchases = purchaseDAO.getAllByAccountId(accountId);
+        
+        purchases.forEach(purchase -> {
+            ArrayList<Integer> productsIds = purchaseDAO.getProductsIdByPurchase(purchase.getId());
+            productsIds.forEach(id -> {
+                purchase.getProducts().add(productDAO.getById(id));
+            });
+        });
+        
+        return purchases;
+    }
+    
 }

@@ -19,7 +19,8 @@ public class ProductDAO {
     private final String[] QUERIES = {
         "SELECT * FROM product",
         "INSERT INTO product (id, name, price, quantity, image_path, description, color, brand) VALUES (?,?,?,?,?,?,?,?);",
-        "SELECT id, name, price, quantity, image_path, description, color, brand FROM product WHERE name = ? AND color = ? AND brand = ?;"
+        "SELECT id, name, price, quantity, image_path, description, color, brand FROM product WHERE name = ? AND color = ? AND brand = ?;",
+        "SELECT id, name, price, quantity, image_path, description, color, brand FROM product WHERE id = ?;"
     };
 
     public ProductDAO() {
@@ -103,5 +104,28 @@ public class ProductDAO {
         return product;
     }
     
-    
+    public Product getById(int productId){
+        try {
+            product= null;
+            preQuery = connection.prepareStatement(QUERIES[3]);
+
+            preQuery.setInt(1, productId);
+            ResultSet data = preQuery.executeQuery();
+
+            if (data.next()) {
+                product.setId(data.getInt("id"));
+                product.setName(data.getString("name"));
+                product.setPrice(data.getDouble("price"));
+                product.setQuantity(data.getInt("quantity"));
+                product.setImagePath(data.getString("image_path"));
+                product.setDescription(data.getString("idescription"));
+                product.setColor(data.getString("color"));
+                product.setBrand(data.getString("brand"));
+            }
+
+        } catch (SQLException ex) {
+            product = null;
+        }
+        return product;
+    }
 }
