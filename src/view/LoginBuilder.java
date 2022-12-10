@@ -28,6 +28,9 @@ public class LoginBuilder implements GUIBuilder {
     public void createButtons() {
         buttons = factory.createButtons();
     }
+    
+    @Override
+    public void createComboBoxes() { }
 
     @Override
     public void createTextFields() {

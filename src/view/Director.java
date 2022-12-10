@@ -17,6 +17,7 @@ public class Director {
     public JFrame createFrame(){
         this.builder.createLabels();
         this.builder.createButtons();
+        this.builder.createComboBoxes();
         this.builder.createTextFields();
         this.builder.addEvents();
         this.builder.createWindow();

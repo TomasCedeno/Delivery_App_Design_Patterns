@@ -1,27 +1,33 @@
 package logic.product;
 
+import javax.swing.JPanel;
+
 public class Product implements Orderable {
 
-    private String name, imagePath, description, color, brand;
+    private String name, imagePath, color, brand, category;
     private int id, quantity;
-    private double price;
+    private int price;
+    private ProductView productView;
 
-    public Product(int id, String name, double price, int quantity, String imagePath, String description) {
+    public Product(String name, int id, int price, String imagePath, String category) {
         this.name = name;
         this.id = id;
         this.price = price;
-        this.quantity = quantity;
         this.imagePath = imagePath;
-        this.description = description;
+        this.category = category;
+        this.productView = ProductViewFactory.getProductView(name, price, imagePath, category);
+        this.brand = productView.getCbBrand().getSelectedItem().toString();
+        this.color = productView.getCbColor().getSelectedItem().toString();
+        this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
     }
     
     @Override
     public Orderable clone() {
-        return new Product(id, name, price, quantity, imagePath, description);
+        return new Product(name, id, price, imagePath, category);
     }
 
     @Override
-    public double getPrice() {
+    public int getPrice() {
         return this.price;
     }
 
@@ -29,21 +35,19 @@ public class Product implements Orderable {
     public String getDetail() {
         return String.format(
                 "Producto: %s \n" +
-                "Descripción: %s \n" +
                 "Precio: %.2f \n"
-            ,name, description, price);
+            ,name, price);
     }
     
     public String getStoreDetail() {
         return String.format(
                 "Producto: %s \n" +
                 "Cantidad: %d \n" +
-                "Descripción: %s \n" +
                 "Precio: %.2f \n"
-            ,name, quantity, description, price);
+            ,name, quantity, price);
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     
@@ -69,14 +73,6 @@ public class Product implements Orderable {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getColor() {
@@ -116,4 +112,20 @@ public class Product implements Orderable {
     public Orderable getElement(int index) {
         return null;
     } 
+
+    public ProductView getProductView() {
+        return productView;
+    }
+    
+    public void updateProduct(String name, int id, int price, String imagePath, String category){
+        this.name = name;
+        this.id = id;
+        this.price = price;
+        this.imagePath = imagePath;
+        this.category = category;
+        productView.updateView(imagePath, name, price, category);
+        this.brand = productView.getCbBrand().getSelectedItem().toString();
+        this.color = productView.getCbColor().getSelectedItem().toString();
+        this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
+    }
 }

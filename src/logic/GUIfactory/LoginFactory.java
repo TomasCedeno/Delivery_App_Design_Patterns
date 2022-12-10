@@ -35,9 +35,6 @@ public class LoginFactory implements GUIFactory {
         buttons[0] = new JButton();
         buttons[1] = new JButton();
         
-        buttons[0] = new JButton();
-        buttons[1] = new JButton();
-        
         buttons[0].setFont(new Font("Lucida Fax", 0, 14));
         buttons[0].setText("Iniciar sesión");
         
@@ -46,6 +43,9 @@ public class LoginFactory implements GUIFactory {
         
         return buttons;
     }
+    
+    @Override
+    public JComboBox[] createComboBoxes() { return null; }
 
     @Override
     public JTextField[] createTextFields() {
@@ -53,10 +53,6 @@ public class LoginFactory implements GUIFactory {
         textFields[0] = new JTextField();
         textFields[1] = new JTextField();
         
-        textFields[0] = new JTextField();
-        textFields[1] = new JTextField();
-        
         return textFields;
     }
-    
 }

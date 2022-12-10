@@ -23,8 +23,8 @@ public class Cart implements Orderable{
     }
 
     @Override
-    public double getPrice() {
-        double totalPrice = 0;
+    public int getPrice() {
+        int totalPrice = 0;
         
         for(Orderable e: elements){
             totalPrice += e.getPrice();
