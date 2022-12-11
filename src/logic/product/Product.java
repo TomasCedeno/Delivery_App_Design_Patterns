@@ -1,29 +1,29 @@
 package logic.product;
 
-import javax.swing.JPanel;
-
 public class Product implements Orderable {
+    
+    /*
+    Nota: la marca, color y cantidad se settearán cuando se agrege el producto al carrito o se compre
+    this.brand = productView.getCbBrand().getSelectedItem().toString();
+    this.color = productView.getCbColor().getSelectedItem().toString();
+    this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
+    */
 
-    private String name, imagePath, color, brand, category;
+    private String name, imagePath, color, brand;
     private int id, quantity;
     private int price;
     private ProductView productView;
 
-    public Product(String name, int id, int price, String imagePath, String category) {
+    public Product(String name, int id, int price, String imagePath) {
         this.name = name;
         this.id = id;
         this.price = price;
         this.imagePath = imagePath;
-        this.category = category;
-        this.productView = ProductViewFactory.getProductView(name, price, imagePath, category);
-        this.brand = productView.getCbBrand().getSelectedItem().toString();
-        this.color = productView.getCbColor().getSelectedItem().toString();
-        this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
     }
     
     @Override
     public Orderable clone() {
-        return new Product(name, id, price, imagePath, category);
+        return new Product(name, id, price, imagePath);
     }
 
     @Override
@@ -116,16 +116,12 @@ public class Product implements Orderable {
     public ProductView getProductView() {
         return productView;
     }
+
+    public void setProductView(ProductView productView) {
+        this.productView = productView;
+    }
     
-    public void updateProduct(String name, int id, int price, String imagePath, String category){
-        this.name = name;
-        this.id = id;
-        this.price = price;
-        this.imagePath = imagePath;
-        this.category = category;
-        productView.updateView(imagePath, name, price, category);
-        this.brand = productView.getCbBrand().getSelectedItem().toString();
-        this.color = productView.getCbColor().getSelectedItem().toString();
-        this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
+    public void updateView(){
+        productView.updateView(this);
     }
 }

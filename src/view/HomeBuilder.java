@@ -8,15 +8,44 @@ import logic.product.*;
 
 public class HomeBuilder implements GUIBuilder {
     private JFrame window;
+    private JPanel jpHome;
     private JLabel[] labels;
     private JButton[] buttons;
     private JComboBox[] comboBoxes;
     private GUIFactory factory;
-    private Product product; // Hay que pensar en cómo transportar esta clase de datos
+    private Product[] product; // Hay que pensar en cómo transportar esta clase de datos
     
     public HomeBuilder(){
-        factory = new HomeFactory();     
-        product = new Product("Computador portatil", 0, 1700000, "./src/Resources/PC.jpg", "Technology");
+        this.factory = new HomeFactory();    
+        this.product = new Product[9];
+        this.product[0] = new Product("Computador portatil", 0, 1700000, "./src/Resources/PC.jpg");
+        this.product[0].setProductView(ProductViewFactory.getProductView(product[0], "Technology"));
+        
+        this.product[1] = new Product("Celular", 1, 800000, "./src/Resources/Cellphone.jfif");
+        this.product[1].setProductView(ProductViewFactory.getProductView(product[1], "Technology"));
+        
+        this.product[2] = new Product("Audífonos", 2, 60000, "./src/Resources/Earphones.jpg");
+        this.product[2].setProductView(ProductViewFactory.getProductView(product[2], "Technology"));
+        
+        this.product[3] = new Product("Camiseta", 3, 40000, "./src/Resources/T-Shirt.jpg");
+        this.product[3].setProductView(ProductViewFactory.getProductView(product[3], "Clothing"));
+        
+        this.product[4] = new Product("Jean", 4, 50000, "./src/Resources/Jean.jpg");
+        this.product[4].setProductView(ProductViewFactory.getProductView(product[4], "Clothing"));
+        
+        this.product[5] = new Product("Chaqueta de cuero", 5, 75000, "./src/Resources/Jacket.jpg");
+        this.product[5].setProductView(ProductViewFactory.getProductView(product[5], "Clothing"));
+        
+        this.product[6] = new Product("Sofá grande", 6, 2500000, "./src/Resources/Sofa.jpg");
+        this.product[6].setProductView(ProductViewFactory.getProductView(product[6], "Furniture"));
+        
+        this.product[7] = new Product("Silla con cojín", 7, 370000, "./src/Resources/Chair.jfif");
+        this.product[7].setProductView(ProductViewFactory.getProductView(product[7], "Furniture"));
+        
+        this.product[8] = new Product("Mesa de noche", 8, 570000, "./src/Resources/Nightstand.jpg");
+        this.product[8].setProductView(ProductViewFactory.getProductView(product[8], "Furniture"));
+        
+        for (Product p : product) p.getProductView().setBounds(20, 85, 350, 350);
     }
     
     @Override
@@ -41,18 +70,19 @@ public class HomeBuilder implements GUIBuilder {
     public void addEvents() {
         comboBoxes[0].addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent evt) {
+                if (evt.getStateChange() == ItemEvent.SELECTED)
                 cbSearchBarItemStateChanged(evt);
             }
         });
         
-        buttons[0].addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttons[0].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
             }
         });
         
-        buttons[1].addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        buttons[1].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnNextActionPerformed(evt);
             }
         });
@@ -62,7 +92,7 @@ public class HomeBuilder implements GUIBuilder {
     public void createWindow() {
         this.window = new JFrame();
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JPanel jpHome = new JPanel();  
+        jpHome = new JPanel();  
         
         GroupLayout jpHomeLayout = new GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
@@ -76,7 +106,7 @@ public class HomeBuilder implements GUIBuilder {
                             .addComponent(labels[0])
                             .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(comboBoxes[0], 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(product.getProductView(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(product[0].getProductView(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -105,14 +135,14 @@ public class HomeBuilder implements GUIBuilder {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxes[0], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(product.getProductView(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addComponent(product[0].getProductView(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[0])
                     .addComponent(buttons[3])
                     .addComponent(buttons[2])
                     .addComponent(buttons[1]))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGap(20,20,20)
                 .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[4])
                     .addComponent(buttons[5])
@@ -139,60 +169,32 @@ public class HomeBuilder implements GUIBuilder {
         return this.window;
     }
     
-    private void cbSearchBarItemStateChanged(ItemEvent evt) {                                             
-        String key = comboBoxes[0].getSelectedItem().toString();
-        ImageIcon img;
-        switch(key){
-            case "Computador":
-                product.updateProduct("Computador Portatil", 0, 1700000, "./src/Resources/PC.jpg", "Technology");
-                window.validate();
-                break;
-            case "Celular":
-                product.updateProduct("Celular", 1, 800000, "./src/Resources/Cellphone.jfif", "Technology");
-                window.validate();
-                break;
-            case "Audífonos":
-                product.updateProduct("Audífonos", 2, 60000,"./src/Resources/Earphones.jpg", "Technology");
-                window.validate();
-                break;
-            case "Camiseta":
-                product.updateProduct("Camiseta", 3, 40000, "./src/Resources/T-Shirt.jpg", "Clothing");
-                window.validate();
-                break;
-            case "Jean":
-                product.updateProduct("Jean", 4, 50000, "./src/Resources/Jean.jpg", "Clothing");
-                window.validate();
-                break;
-            case "Chaqueta":
-                product.updateProduct("Chaqueta de cuero", 5, 75000, "./src/Resources/Jacket.jpg", "Clothing");
-                window.validate();
-                break;
-            case "Sofá":
-                product.updateProduct("Sofa grande", 6, 2500000, "./src/Resources/Sofa.jpg", "Furniture");
-                window.validate();
-                break;
-            case "Silla":
-                product.updateProduct("Nombre: Silla con cojin", 7, 370000, "./src/Resources/Chair.jfif", "Furniture");
-                window.validate();
-                break;
-            default:
-                product.updateProduct("Mesa de noche", 8, 570000, "./src/Resources/Nightstand.jpg", "Furniture");
-                window.validate();
-                break;
+    boolean band = true;
+    
+    private void cbSearchBarItemStateChanged(ItemEvent evt) { 
+        int index = comboBoxes[0].getSelectedIndex();
+        
+        for (int i = 0; i < jpHome.getComponentCount(); i++) {
+            if(jpHome.getComponent(i) == product[0].getProductView() || jpHome.getComponent(i) == product[3].getProductView() || jpHome.getComponent(i) == product[6].getProductView()){
+                jpHome.remove(i);
+                jpHome.repaint();
+                System.out.println("Si");
+            }
         }
+        product[index].updateView();
+        jpHome.add(product[index].getProductView());
+        window.validate();
     } 
     
     private void btnPreviousActionPerformed(ActionEvent evt) {
-        if(product.getId() > 0){
-            comboBoxes[0].setSelectedIndex(product.getId()-1);
-            cbSearchBarItemStateChanged(null);
+        if(comboBoxes[0].getSelectedIndex() > 0){
+            comboBoxes[0].setSelectedIndex(comboBoxes[0].getSelectedIndex()-1);
         }
     }
     
     private void btnNextActionPerformed(ActionEvent evt) {                                        
-        if(product.getId() < 8){
-            comboBoxes[0].setSelectedIndex(product.getId()+1);
-            cbSearchBarItemStateChanged(null);
+        if(comboBoxes[0].getSelectedIndex() < 8){
+            comboBoxes[0].setSelectedIndex(comboBoxes[0].getSelectedIndex()+1);
         }
     }
 }

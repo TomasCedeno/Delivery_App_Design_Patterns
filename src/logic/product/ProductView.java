@@ -39,26 +39,10 @@ public class ProductView extends JPanel{
         return labels[index];
     }
     
-    public void updateView(String imagePath, String name, int price, String category){
-        ImageIcon img = new ImageIcon(imagePath);   
+    public void updateView(Product product){
+        ImageIcon img = new ImageIcon(product.getImagePath());   
         labels[0].setIcon(new ImageIcon(img.getImage().getScaledInstance(290, 150, Image.SCALE_SMOOTH)));
-        labels[1].setText("Nombre: " + name);
-        labels[4].setText("Precio: $" + price);
-        
-        switch(category){
-            case "Technology":
-                cbBrand.setModel(new DefaultComboBoxModel<>(new String[] { "Samsung", "Huawei", "Apple" }));
-                cbColor.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "White", "Silver" }));
-                break;
-            case "Clothing":
-                cbBrand.setModel(new DefaultComboBoxModel<>(new String[] { "Koaj", "Adidas", "Nike" }));
-                cbColor.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "White", "Yellow", "Blue", "Red", "Green" }));
-                break;
-            case "Furniture":
-                cbBrand.setModel(new DefaultComboBoxModel<>(new String[] { "Jamar", "Moderline", "Series" }));
-                cbColor.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "Gray", "Blue", "Red", "Green", "Pink" }));
-                break;
-            default: break;
-        }
+        labels[1].setText("Nombre: " + product.getName());
+        labels[4].setText("Precio: $" + product.getPrice());
     }
 }

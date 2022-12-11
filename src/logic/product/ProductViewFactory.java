@@ -8,20 +8,20 @@ import javax.swing.*;
 public class ProductViewFactory {
     private static HashMap<String, ProductView> productsViews = new HashMap<>();
     
-    public static ProductView getProductView(String name, int price, String imagePath, String category) {
-        ProductView result = productsViews.get(name);
+    public static ProductView getProductView(Product product, String category) {
+        ProductView result = productsViews.get(category);
         if (result == null) {
-            result = createProductView(name, price, imagePath, category);
-            productsViews.put(name, result);
+            result = createProductView(product, category);
+            productsViews.put(category, result);
         }
         return result;
     }
     
-    private static ProductView createProductView(String name, int price, String imagePath, String category){
+    private static ProductView createProductView(Product p, String c){
         ProductView newProductView = new ProductView();
        
-        createComponents(newProductView, name, price, imagePath);
-        setComboBoxes(newProductView.getCbBrand(), newProductView.getCbColor(), category);
+        createComponents(newProductView, p.getName(), p.getPrice(), p.getImagePath());
+        setComboBoxes(newProductView.getCbBrand(), newProductView.getCbColor(), c);
         createPanel(newProductView);
         
         return newProductView;
