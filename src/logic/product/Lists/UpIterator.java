@@ -27,4 +27,9 @@ public class UpIterator implements Iterator {
     public void setCurrentPosition(int index) {
         this.currentPosition = index;
     }
+
+    @Override
+    public int getCurrentPosition() {
+        return this.currentPosition;
+    }
 }

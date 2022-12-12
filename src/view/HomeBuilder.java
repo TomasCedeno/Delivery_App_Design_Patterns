@@ -4,7 +4,6 @@ package view;
 import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
-import logic.product.*;
 import logic.product.Lists.*;
 
 public class HomeBuilder implements GUIBuilder {
@@ -14,7 +13,7 @@ public class HomeBuilder implements GUIBuilder {
     private JButton[] buttons;
     private JComboBox[] comboBoxes;
     private GUIFactory factory;
-    private HomeProductList products;
+    private ProductList products;
     
     public HomeBuilder(){
         this.factory = new HomeFactory();    
