@@ -74,7 +74,7 @@ public class DBFacade {
     public boolean createPurchase(Purchase purchase){
         boolean created = purchaseDAO.create(purchase);
         int purchaseId = purchaseDAO.getAllByAccountId(purchase.getAccountId()).get(0).getId();
-        
+
         purchase.getProducts().forEach(product -> {
             productDAO.create(product, purchaseId);
         });
