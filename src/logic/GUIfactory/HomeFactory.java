@@ -56,7 +56,7 @@ public class HomeFactory implements GUIFactory{
         JComboBox<String>[] comboBoxes = new JComboBox[1];
         comboBoxes[0] = new JComboBox<>();
         comboBoxes[0].setFont(new Font("Lucida Fax", 0, 12));
-        comboBoxes[0].setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computador", "Celular", "Audífonos", "Camiseta", "Jean", "Chaqueta", "Sofá", "Silla", "Mesa de noche" }));
+        comboBoxes[0].setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computador portatil", "Celular", "Audífonos", "Camiseta", "Jean", "Chaqueta de cuero", "Sofá grande", "Silla con cojín", "Mesa de noche" }));
         
         return comboBoxes; 
     }

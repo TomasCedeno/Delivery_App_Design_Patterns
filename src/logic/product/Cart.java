@@ -13,13 +13,13 @@ public class Cart implements Orderable{
     
     @Override
     public Orderable clone() {
-        Orderable orderCopy = new Order();
+        Cart cartCopy = new Cart();
         
         for(Orderable e: elements){
-            orderCopy.add(e.clone());
+            cartCopy.add(e.clone());
         }
         
-        return orderCopy;
+        return cartCopy;
     }
 
     @Override

@@ -1,10 +1,13 @@
 
-package logic.product;
+package logic.product.commands;
+
+import java.util.ArrayList;
+import logic.product.*;
 
 public class BuyCommand implements DataSender{
-    private Order receiver;
+    private Purchase receiver;
     
-    public BuyCommand(Order receiver){
+    public BuyCommand(Purchase receiver){
         this.receiver = receiver;
     }
 
@@ -14,6 +17,8 @@ public class BuyCommand implements DataSender{
         // Solicita los datos intrínsecos del producto, desde la fábrica
         // Antes de agregar a la orden, se verifica el pago del producto por parte del usuario desde la interfaz
         
-        receiver.add(new Product("nombre", 2000, "source"));
+        ArrayList<Product> product = new ArrayList<>();
+        product.add(new Product("nombre", 2000, "source"));
+        receiver.setProducts(product);
     }
 }

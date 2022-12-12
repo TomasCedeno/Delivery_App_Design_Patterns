@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
 import logic.product.*;
+import logic.product.Lists.*;
 
 public class HomeBuilder implements GUIBuilder {
     private JFrame window;
@@ -13,39 +14,11 @@ public class HomeBuilder implements GUIBuilder {
     private JButton[] buttons;
     private JComboBox[] comboBoxes;
     private GUIFactory factory;
-    private Product[] product; // Hay que pensar en cómo transportar esta clase de datos
+    private HomeProductList products;
     
     public HomeBuilder(){
         this.factory = new HomeFactory();    
-        this.product = new Product[9];
-        this.product[0] = new Product("Computador portatil", 1700000, "./src/Resources/PC.jpg");
-        this.product[0].setProductView(ProductViewFactory.getProductView(product[0], "Technology"));
-        
-        this.product[1] = new Product("Celular", 800000, "./src/Resources/Cellphone.jfif");
-        this.product[1].setProductView(ProductViewFactory.getProductView(product[1], "Technology"));
-        
-        this.product[2] = new Product("Audífonos", 60000, "./src/Resources/Earphones.jpg");
-        this.product[2].setProductView(ProductViewFactory.getProductView(product[2], "Technology"));
-        
-        this.product[3] = new Product("Camiseta", 40000, "./src/Resources/T-Shirt.jpg");
-        this.product[3].setProductView(ProductViewFactory.getProductView(product[3], "Clothing"));
-        
-        this.product[4] = new Product("Jean", 50000, "./src/Resources/Jean.jpg");
-        this.product[4].setProductView(ProductViewFactory.getProductView(product[4], "Clothing"));
-        
-        this.product[5] = new Product("Chaqueta de cuero", 75000, "./src/Resources/Jacket.jpg");
-        this.product[5].setProductView(ProductViewFactory.getProductView(product[5], "Clothing"));
-        
-        this.product[6] = new Product("Sofá grande", 2500000, "./src/Resources/Sofa.jpg");
-        this.product[6].setProductView(ProductViewFactory.getProductView(product[6], "Furniture"));
-        
-        this.product[7] = new Product("Silla con cojín", 370000, "./src/Resources/Chair.jfif");
-        this.product[7].setProductView(ProductViewFactory.getProductView(product[7], "Furniture"));
-        
-        this.product[8] = new Product("Mesa de noche", 570000, "./src/Resources/Nightstand.jpg");
-        this.product[8].setProductView(ProductViewFactory.getProductView(product[8], "Furniture"));
-        
-        for (Product p : product) p.getProductView().setBounds(20, 85, 350, 350);
+        this.products = new HomeProductList();
     }
     
     @Override
@@ -75,15 +48,15 @@ public class HomeBuilder implements GUIBuilder {
             }
         });
         
-        buttons[0].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnPreviousActionPerformed(evt);
+        buttons[0].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnPreviousMouseClicked(evt);
             }
         });
         
-        buttons[1].addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnNextActionPerformed(evt);
+        buttons[1].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnNextMouseClicked(evt);
             }
         });
     }
@@ -106,7 +79,7 @@ public class HomeBuilder implements GUIBuilder {
                             .addComponent(labels[0])
                             .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(comboBoxes[0], 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(product[0].getProductView(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(products.getProducts().get(0).getProductView(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -135,7 +108,7 @@ public class HomeBuilder implements GUIBuilder {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxes[0], GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(product[0].getProductView(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(products.getProducts().get(0).getProductView(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[0])
@@ -175,26 +148,27 @@ public class HomeBuilder implements GUIBuilder {
         int index = comboBoxes[0].getSelectedIndex();
         
         for (int i = 0; i < jpHome.getComponentCount(); i++) {
-            if(jpHome.getComponent(i) == product[0].getProductView() || jpHome.getComponent(i) == product[3].getProductView() || jpHome.getComponent(i) == product[6].getProductView()){
+            if(jpHome.getComponent(i) == products.getProducts().get(0).getProductView() || 
+                    jpHome.getComponent(i) == products.getProducts().get(3).getProductView() || 
+                    jpHome.getComponent(i) == products.getProducts().get(6).getProductView()){
                 jpHome.remove(i);
                 jpHome.repaint();
-                System.out.println("Si");
             }
         }
-        product[index].updateView();
-        jpHome.add(product[index].getProductView());
+        products.getProducts().get(index).updateView();
+        jpHome.add(products.getProducts().get(index).getProductView());
         window.validate();
     } 
     
-    private void btnPreviousActionPerformed(ActionEvent evt) {
-        if(comboBoxes[0].getSelectedIndex() > 0){
-            comboBoxes[0].setSelectedIndex(comboBoxes[0].getSelectedIndex()-1);
-        }
+    private void btnPreviousMouseClicked(MouseEvent evt) {
+        Iterator it = products.createDownIterator();
+        it.setCurrentPosition(comboBoxes[0].getSelectedIndex());
+        if(it.hasMore()) comboBoxes[0].setSelectedItem(it.getNextProduct().getName());
     }
     
-    private void btnNextActionPerformed(ActionEvent evt) {                                        
-        if(comboBoxes[0].getSelectedIndex() < 8){
-            comboBoxes[0].setSelectedIndex(comboBoxes[0].getSelectedIndex()+1);
-        }
+    private void btnNextMouseClicked(MouseEvent evt) {   
+        Iterator it = products.createUpIterator();
+        it.setCurrentPosition(comboBoxes[0].getSelectedIndex());
+        if(it.hasMore()) comboBoxes[0].setSelectedItem(it.getNextProduct().getName());
     }
 }

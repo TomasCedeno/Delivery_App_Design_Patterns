@@ -1,5 +1,7 @@
 
-package logic.product;
+package logic.product.commands;
+
+import logic.product.*;
 
 public class AddToCartCommand implements DataSender {
     private Cart receiver;
