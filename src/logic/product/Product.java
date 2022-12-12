@@ -10,20 +10,19 @@ public class Product implements Orderable {
     */
 
     private String name, imagePath, color, brand;
-    private int id, quantity;
+    private int quantity;
     private int price;
     private ProductView productView;
 
-    public Product(String name, int id, int price, String imagePath) {
+    public Product(String name, int price, String imagePath) {
         this.name = name;
-        this.id = id;
         this.price = price;
         this.imagePath = imagePath;
     }
     
     @Override
     public Orderable clone() {
-        return new Product(name, id, price, imagePath);
+        return new Product(name, price, imagePath);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class Product implements Orderable {
     public String getDetail() {
         return String.format(
                 "Producto: %s \n" +
-                "Precio: %.2f \n"
+                "Precio: %d \n"
             ,name, price);
     }
     
@@ -43,7 +42,7 @@ public class Product implements Orderable {
         return String.format(
                 "Producto: %s \n" +
                 "Cantidad: %d \n" +
-                "Precio: %.2f \n"
+                "Precio: %d \n"
             ,name, quantity, price);
     }
 
@@ -89,14 +88,6 @@ public class Product implements Orderable {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
     @Override

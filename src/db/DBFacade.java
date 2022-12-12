@@ -40,7 +40,7 @@ public class DBFacade {
         Account account = new Account();
         account.setUserId(user.getIdentification());
         user.setAccount(account);
-        return accountDAO.create(account) && userDAO.create(user);
+        return userDAO.create(user) && accountDAO.create(account);
     }
     
     /**
@@ -53,29 +53,30 @@ public class DBFacade {
         User user = userDAO.getByEmail(email);
         return user.getPassword().equals(password);
     }
-    
-    /**
-     * 
-     * @return todos los productos existentes en la base de datos
-     */
-    public ArrayList<Product> getProducts() {
-        return productDAO.getAll();
-    }
-    
+        
     /**
      * 
      * @param userId
      * @return el objeto del usuario asociado con el id pasado por parametro
      */
     public User getUser(String userId){
-        return userDAO.getByIdentification(userId);
+        User user = userDAO.getByIdentification(userId);
+        user.setAccount(accountDAO.getByUserId(userId));
+        return user;
     }
     
+    /**
+     * Registra una compra en la base de datos relacionando todos sus productos, ignorando el id
+     * y asignandole uno nuevo por la base de datos como un consecutivo
+     * @param purchase
+     * @return true o false dependiendo del exito de la operacion
+     */
     public boolean createPurchase(Purchase purchase){
         boolean created = purchaseDAO.create(purchase);
+        int purchaseId = purchaseDAO.getAllByAccountId(purchase.getAccountId()).get(0).getId();
         
         purchase.getProducts().forEach(product -> {
-            purchaseDAO.addProduct(purchase.getId(), product.getId());
+            productDAO.create(product, purchaseId);
         });
         
         return created;
@@ -90,10 +91,7 @@ public class DBFacade {
         ArrayList<Purchase> purchases = purchaseDAO.getAllByAccountId(accountId);
         
         purchases.forEach(purchase -> {
-            ArrayList<Integer> productsIds = purchaseDAO.getProductsIdByPurchase(purchase.getId());
-            productsIds.forEach(id -> {
-                purchase.getProducts().add(productDAO.getById(id));
-            });
+            purchase.setProducts(productDAO.getAllByPurchaseId(purchase.getId()));
         });
         
         return purchases;

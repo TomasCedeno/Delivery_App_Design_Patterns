@@ -4,12 +4,11 @@ import java.util.ArrayList;
 
 public class Purchase {
     
-    private int id, accountId;
+    private int id, accountId, totalPrice;
     private String paymentMethod;
     private ArrayList<Product> products;
-    private double totalPrice;
 
-    public Purchase(int id, int accountId, String paymentMethod, ArrayList<Product> products, double totalPrice) {
+    public Purchase(int id, int accountId, String paymentMethod, ArrayList<Product> products, int totalPrice) {
         this.id = id;
         this.accountId = accountId;
         this.paymentMethod = paymentMethod;
@@ -49,15 +48,11 @@ public class Purchase {
         this.products = products;
     }
 
-    public double getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
-    
-    
-    
-    
 }

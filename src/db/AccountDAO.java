@@ -15,14 +15,13 @@ public class AccountDAO {
     private Account account;
     
     private final String[] QUERIES = {
-        "INSERT INTO account (user_id, points) VALUES (?, ?);",
-        "SELECT id, user_id, points FROM account WHERE id = ?;",
-        "UPDATE account SET points = ? WHERE id = ?;"
+        "INSERT INTO accounts (user_id, points) VALUES (?, ?);",
+        "SELECT id, user_id, points FROM accounts WHERE user_id = ?;",
+        "UPDATE accounts SET points = ? WHERE id = ?;"
     };
     
     public AccountDAO() {
         connection = DBConnection.getInstance().getConnection();
-        account = new Account();
     }
     
     public boolean create(Account account){
@@ -42,12 +41,12 @@ public class AccountDAO {
         return isSuccesfully;
     }
     
-    public Account get(int accountId){
+    public Account getByUserId(String userId){
         try {
-            account = null;
+            account = new Account();
             preQuery = connection.prepareStatement(QUERIES[1]);
 
-            preQuery.setInt(1, accountId);
+            preQuery.setString(1, userId);
             ResultSet data = preQuery.executeQuery();
 
             if (data.next()) {
@@ -62,7 +61,7 @@ public class AccountDAO {
         return account;
     }
     
-    public boolean update(Account account){
+    public boolean updatePoints(Account account){
         try {
             preQuery = connection.prepareStatement(QUERIES[2]);
             

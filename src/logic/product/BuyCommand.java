@@ -14,6 +14,6 @@ public class BuyCommand implements DataSender{
         // Solicita los datos intrínsecos del producto, desde la fábrica
         // Antes de agregar a la orden, se verifica el pago del producto por parte del usuario desde la interfaz
         
-        receiver.add(new Product("nombre", 0, 2000, "source"));
+        receiver.add(new Product("nombre", 2000, "source"));
     }
 }

@@ -15,14 +15,13 @@ public class UserDAO {
     private User user;
     
     private final String[] QUERIES = {
-        "INSERT INTO user (identification, email, password, name, last_name, address, birth_day) VALUES (?,?,?,?,?,?,?);",
-        "SELECT identification, email, password, name, last_name, address, birth_day FROM user WHERE identification = ?;",
-        "SELECT identification, email, password, name, last_name, address, birth_day FROM user WHERE email = ?;"
+        "INSERT INTO users (identification, email, password, name, last_name, address, birth_day) VALUES (?,?,?,?,?,?,?);",
+        "SELECT identification, email, password, name, last_name, address, birth_day FROM users WHERE identification = ?;",
+        "SELECT identification, email, password, name, last_name, address, birth_day FROM users WHERE email = ?;"
     };
     
     public UserDAO() {
         connection = DBConnection.getInstance().getConnection();
-        user = new User("", "");
     }
     
     public boolean create(User user){
@@ -50,7 +49,7 @@ public class UserDAO {
     
     public User getByIdentification(String userId){
         try {
-            user = null;
+            user = new User("", "");
             preQuery = connection.prepareStatement(QUERIES[1]);
             
             preQuery.setString(1, userId);
@@ -74,7 +73,7 @@ public class UserDAO {
     
     public User getByEmail(String email){
         try {
-            user = null;
+            user = new User("", "");
             preQuery = connection.prepareStatement(QUERIES[2]);
             
             preQuery.setString(1, email);

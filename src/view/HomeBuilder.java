@@ -18,31 +18,31 @@ public class HomeBuilder implements GUIBuilder {
     public HomeBuilder(){
         this.factory = new HomeFactory();    
         this.product = new Product[9];
-        this.product[0] = new Product("Computador portatil", 0, 1700000, "./src/Resources/PC.jpg");
+        this.product[0] = new Product("Computador portatil", 1700000, "./src/Resources/PC.jpg");
         this.product[0].setProductView(ProductViewFactory.getProductView(product[0], "Technology"));
         
-        this.product[1] = new Product("Celular", 1, 800000, "./src/Resources/Cellphone.jfif");
+        this.product[1] = new Product("Celular", 800000, "./src/Resources/Cellphone.jfif");
         this.product[1].setProductView(ProductViewFactory.getProductView(product[1], "Technology"));
         
-        this.product[2] = new Product("Audífonos", 2, 60000, "./src/Resources/Earphones.jpg");
+        this.product[2] = new Product("Audífonos", 60000, "./src/Resources/Earphones.jpg");
         this.product[2].setProductView(ProductViewFactory.getProductView(product[2], "Technology"));
         
-        this.product[3] = new Product("Camiseta", 3, 40000, "./src/Resources/T-Shirt.jpg");
+        this.product[3] = new Product("Camiseta", 40000, "./src/Resources/T-Shirt.jpg");
         this.product[3].setProductView(ProductViewFactory.getProductView(product[3], "Clothing"));
         
-        this.product[4] = new Product("Jean", 4, 50000, "./src/Resources/Jean.jpg");
+        this.product[4] = new Product("Jean", 50000, "./src/Resources/Jean.jpg");
         this.product[4].setProductView(ProductViewFactory.getProductView(product[4], "Clothing"));
         
-        this.product[5] = new Product("Chaqueta de cuero", 5, 75000, "./src/Resources/Jacket.jpg");
+        this.product[5] = new Product("Chaqueta de cuero", 75000, "./src/Resources/Jacket.jpg");
         this.product[5].setProductView(ProductViewFactory.getProductView(product[5], "Clothing"));
         
-        this.product[6] = new Product("Sofá grande", 6, 2500000, "./src/Resources/Sofa.jpg");
+        this.product[6] = new Product("Sofá grande", 2500000, "./src/Resources/Sofa.jpg");
         this.product[6].setProductView(ProductViewFactory.getProductView(product[6], "Furniture"));
         
-        this.product[7] = new Product("Silla con cojín", 7, 370000, "./src/Resources/Chair.jfif");
+        this.product[7] = new Product("Silla con cojín", 370000, "./src/Resources/Chair.jfif");
         this.product[7].setProductView(ProductViewFactory.getProductView(product[7], "Furniture"));
         
-        this.product[8] = new Product("Mesa de noche", 8, 570000, "./src/Resources/Nightstand.jpg");
+        this.product[8] = new Product("Mesa de noche", 570000, "./src/Resources/Nightstand.jpg");
         this.product[8].setProductView(ProductViewFactory.getProductView(product[8], "Furniture"));
         
         for (Product p : product) p.getProductView().setBounds(20, 85, 350, 350);
