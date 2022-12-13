@@ -17,7 +17,8 @@ public class UserDAO {
     private final String[] QUERIES = {
         "INSERT INTO users (identification, email, password, name, last_name, address, birth_day) VALUES (?,?,?,?,?,?,?);",
         "SELECT identification, email, password, name, last_name, address, birth_day FROM users WHERE identification = ?;",
-        "SELECT identification, email, password, name, last_name, address, birth_day FROM users WHERE email = ?;"
+        "SELECT identification, email, password, name, last_name, address, birth_day FROM users WHERE email = ?;",
+        "UPDATE users SET password = ?, address = ? WHERE identification = ?"
     };
     
     public UserDAO() {
@@ -93,6 +94,24 @@ public class UserDAO {
             user = null;
         }
         return user;
+    }
+    
+    public boolean update(User user){
+        try {
+            preQuery = connection.prepareStatement(QUERIES[3]);
+            
+            preQuery.setString(1, user.getPassword());
+            preQuery.setString(2, user.getAddress());
+            preQuery.setString(3, user.getIdentification());
+            
+            if (preQuery.executeUpdate() > 0){
+                isSuccesfully = true;
+            }
+            
+        } catch(SQLException ex){
+            isSuccesfully = false;
+        }
+        return isSuccesfully;
     }
     
 }

@@ -66,6 +66,15 @@ public class DBFacade {
     }
     
     /**
+     * Actualiza la contraseña y direccion de un usuario en la base de datos
+     * @param user el usuario con los nuevos datos 
+     * @return true si se actualizo con exito
+     */
+    public boolean updateUser(User user) {
+        return userDAO.update(user);
+    }
+    
+    /**
      * Registra una compra en la base de datos relacionando todos sus productos, ignorando el id
      * y asignandole uno nuevo por la base de datos como un consecutivo
      * @param purchase

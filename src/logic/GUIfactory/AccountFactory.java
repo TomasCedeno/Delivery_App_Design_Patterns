@@ -96,6 +96,8 @@ public class AccountFactory implements GUIFactory {
         textFileds[1] = new javax.swing.JTextField();
         textFileds[2] = new javax.swing.JPasswordField();
         
+        textFileds[0].setEditable(false);
+        
         return textFileds;
     }
     

@@ -246,6 +246,9 @@ public class AccountBuilder implements GUIBuilder {
         labels[1].setText("Nombre: " + user.getName());
         labels[4].setText("Apellido: " + user.getLastName());
         labels[3].setText("Fecha de Nacimiento: " + user.getBirthDay());
+        textFields[0].setText(user.getEmail());
+        textFields[1].setText(user.getAddress());
+        textFields[2].setText(user.getPassword());
     }
     
     private void tblPurchasesMouseClicked(java.awt.event.MouseEvent evt) {                                          
