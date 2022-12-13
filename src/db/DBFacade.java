@@ -91,7 +91,7 @@ public class DBFacade {
         ArrayList<Purchase> purchases = purchaseDAO.getAllByAccountId(accountId);
         
         purchases.forEach(purchase -> {
-            purchase.setProducts(productDAO.getAllByPurchaseId(purchase.getId()));
+            purchase.getProducts().addAll(productDAO.getAllByPurchaseId(purchase.getId()));
         });
         
         return purchases;

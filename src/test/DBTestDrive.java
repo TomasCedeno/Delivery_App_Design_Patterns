@@ -28,18 +28,18 @@ public class DBTestDrive {
         Account account = (Account) db.getUser("1234").getAccount();
         ArrayList<Product> products = new ArrayList();
         
-        Product pc = new Product("Computador portatil", 1700, "./src/Resources/PC.jpg");
+        Product pc = new Product("Computador portatil", 1700000, "./src/Resources/PC.jpg");
         pc.setQuantity(2);
         pc.setColor("verde");
         pc.setBrand("Gucci");
         
-        Product phone = new Product("Celular", 800, "./src/Resources/Cellphone.jfif");
+        Product phone = new Product("Celular", 800000, "./src/Resources/Cellphone.jfif");
         phone.setQuantity(5);
         phone.setColor("naranja");
         phone.setBrand("Mc Donalds");
         
         products.add(pc);
-        //products.add(phone);
+        products.add(phone);
         Purchase purchase = new Purchase(9000, account.getId(), "En especie", products, 0);
         db.createPurchase(purchase);
         
