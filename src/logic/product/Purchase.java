@@ -55,4 +55,17 @@ public class Purchase {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+    
+    public String getProductsDetail() {
+        String detail = "";
+        for (Product p: products){
+            detail += p.getDetail() + "\n";
+        }
+        return detail;
+    }
+    
+    public String[] toArray() {
+        String[] data = {String.valueOf(id), String.valueOf(totalPrice), paymentMethod};
+        return data;
+    }
 }

@@ -34,16 +34,11 @@ public class Product implements Orderable {
     public String getDetail() {
         return String.format(
                 "Producto: %s \n" +
-                "Precio: %d \n"
-            ,name, price);
-    }
-    
-    public String getStoreDetail() {
-        return String.format(
-                "Producto: %s \n" +
+                "Color: %s \n" +
+                "Marca: %s \n" +
                 "Cantidad: %d \n" +
                 "Precio: %d \n"
-            ,name, quantity, price);
+            ,name, color, brand, quantity, price);
     }
 
     public void setPrice(int price) {
