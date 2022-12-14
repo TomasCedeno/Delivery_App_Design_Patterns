@@ -86,13 +86,10 @@ public class AccountFactory implements GUIFactory {
         buttons[3].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         buttons[3].setText("Cuenta");
         
-        buttons[4].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         buttons[4].setText("Descuentos");
 
-        buttons[5].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         buttons[5].setText("Entrega Gratis");
 
-        buttons[6].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         buttons[6].setText("Puntos Extra");
         
         return buttons;

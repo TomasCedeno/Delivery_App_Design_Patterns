@@ -59,6 +59,14 @@ public class Account implements AbstractAccount {
         this.freeDelivery = freeDelivery;
     }
     
+    public String getDetail(){
+        String detail = "";
+        detail += isDiscount()?"* Descuentos\n":"";
+        detail += isExtraPoints()?"* Puntos Extra\n":"";
+        detail += isFreeDelivery()?"* Entregas Gratis\n":"";
+        return detail;
+    }
+    
     @Override
     public int getPoints() {
         return this.points;

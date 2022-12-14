@@ -121,10 +121,25 @@ public class AccountView extends javax.swing.JFrame {
         lblDetail.setText("Detalle Compra");
 
         btnDiscount.setText("Descuentos");
+        btnDiscount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiscountActionPerformed(evt);
+            }
+        });
 
         btnFreeDelivery.setText("Entrega Gratis");
+        btnFreeDelivery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFreeDeliveryActionPerformed(evt);
+            }
+        });
 
         btnExtraPoints.setText("Puntos Extra");
+        btnExtraPoints.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExtraPointsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpAccountLayout = new javax.swing.GroupLayout(jpAccount);
         jpAccount.setLayout(jpAccountLayout);
@@ -187,16 +202,17 @@ public class AccountView extends javax.swing.JFrame {
                                 .addComponent(lblUpgrade)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addComponent(btnDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExtraPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnFreeDelivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(35, 35, 35))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExtraPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFreeDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
                     .addContainerGap(567, Short.MAX_VALUE)
@@ -294,6 +310,18 @@ public class AccountView extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDiscountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiscountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDiscountActionPerformed
+
+    private void btnExtraPointsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtraPointsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExtraPointsActionPerformed
+
+    private void btnFreeDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFreeDeliveryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFreeDeliveryActionPerformed
 
     
     public void setTblPurchases() {
