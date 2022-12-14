@@ -10,7 +10,7 @@ public class AccountFactory implements GUIFactory {
 
     @Override
     public JLabel[] createLabels() {
-        JLabel[] labels = new JLabel[11];
+        JLabel[] labels = new JLabel[12];
         labels[0] = new javax.swing.JLabel();
         labels[1] = new javax.swing.JLabel();
         labels[2] = new javax.swing.JLabel();
@@ -22,6 +22,7 @@ public class AccountFactory implements GUIFactory {
         labels[8] = new javax.swing.JLabel();
         labels[9] = new javax.swing.JLabel();
         labels[10] = new javax.swing.JLabel();
+        labels[11] = new javax.swing.JLabel();
         
         labels[0].setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
         labels[0].setText("Detalle Compra");
@@ -56,17 +57,22 @@ public class AccountFactory implements GUIFactory {
         labels[10].setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
         labels[10].setText("Puntos: ");
         
+        labels[11].setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
+        labels[11].setText("Mejora tu cuenta");
+        
         return labels;
     }
 
     @Override
     public JButton[] createButtons() {
-        JButton[] buttons = new JButton[5];
+        JButton[] buttons = new JButton[7];
         buttons[0] = new javax.swing.JButton();
         buttons[1] = new javax.swing.JButton();
         buttons[2] = new javax.swing.JButton();
         buttons[3] = new javax.swing.JButton();
         buttons[4] = new javax.swing.JButton();
+        buttons[5] = new javax.swing.JButton();
+        buttons[6] = new javax.swing.JButton();
         
         buttons[0].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         buttons[0].setText("Inicio");
@@ -81,7 +87,13 @@ public class AccountFactory implements GUIFactory {
         buttons[3].setText("Cuenta");
         
         buttons[4].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
-        buttons[4].setText("Boost (Decorator)");
+        buttons[4].setText("Descuentos");
+
+        buttons[5].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
+        buttons[5].setText("Entrega Gratis");
+
+        buttons[6].setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
+        buttons[6].setText("Puntos Extra");
         
         return buttons;
     }

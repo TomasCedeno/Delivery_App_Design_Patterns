@@ -30,7 +30,7 @@ public class AccountView extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         btnCart = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        lblDetail = new javax.swing.JLabel();
+        lblUpgrade = new javax.swing.JLabel();
         scrollPanePurchases = new javax.swing.JScrollPane();
         tblPurchases = new javax.swing.JTable();
         lblName = new javax.swing.JLabel();
@@ -49,7 +49,10 @@ public class AccountView extends javax.swing.JFrame {
         editorPaneDetail = new javax.swing.JEditorPane();
         lblPoints = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        btnDecorator = new javax.swing.JButton();
+        lblDetail = new javax.swing.JLabel();
+        btnDiscount = new javax.swing.JButton();
+        btnFreeDelivery = new javax.swing.JButton();
+        btnExtraPoints = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,8 +70,8 @@ public class AccountView extends javax.swing.JFrame {
             }
         });
 
-        lblDetail.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
-        lblDetail.setText("Detalle Compra");
+        lblUpgrade.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
+        lblUpgrade.setText("Mejora tu cuenta");
 
         tblPurchases.setRowHeight(32);
         tblPurchases.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,8 +117,14 @@ public class AccountView extends javax.swing.JFrame {
         lblPoints.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
         lblPoints.setText("Puntos: ");
 
-        btnDecorator.setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
-        btnDecorator.setText("Boost (Decorator)");
+        lblDetail.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
+        lblDetail.setText("Detalle Compra");
+
+        btnDiscount.setText("Descuentos");
+
+        btnFreeDelivery.setText("Entrega Gratis");
+
+        btnExtraPoints.setText("Puntos Extra");
 
         javax.swing.GroupLayout jpAccountLayout = new javax.swing.GroupLayout(jpAccount);
         jpAccount.setLayout(jpAccountLayout);
@@ -151,10 +160,6 @@ public class AccountView extends javax.swing.JFrame {
                                         .addComponent(lblIdentification, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
                     .addGroup(jpAccountLayout.createSequentialGroup()
                         .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpAccountLayout.createSequentialGroup()
@@ -175,14 +180,28 @@ public class AccountView extends javax.swing.JFrame {
                                     .addComponent(txtEmail)
                                     .addComponent(txtAddress)))
                             .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addGap(125, 125, 125)
-                                .addComponent(lblDetail))
-                            .addGroup(jpAccountLayout.createSequentialGroup()
                                 .addGap(67, 67, 67)
-                                .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnDecorator, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(23, 23, 23))))
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpAccountLayout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(lblUpgrade)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpAccountLayout.createSequentialGroup()
+                                .addComponent(btnDiscount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnExtraPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFreeDelivery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35))))
+            .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                    .addContainerGap(567, Short.MAX_VALUE)
+                    .addComponent(lblDetail)
+                    .addGap(124, 124, 124)))
         );
         jpAccountLayout.setVerticalGroup(
             jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,29 +234,38 @@ public class AccountView extends javax.swing.JFrame {
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBirthDay)
                     .addComponent(btnUpdate))
-                .addGap(18, 18, 18)
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpAccountLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(lblHistory)
                         .addGap(15, 15, 15)
                         .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPanePurchases, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addComponent(scrollPanePurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnHome)
-                                    .addComponent(btnCart)
-                                    .addComponent(btnAccount))
-                                .addGap(21, 21, 21))
-                            .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lblDetail)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(55, Short.MAX_VALUE))))
-                    .addGroup(jpAccountLayout.createSequentialGroup()
-                        .addComponent(btnDecorator)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnHome)
+                            .addComponent(btnCart)
+                            .addComponent(btnAccount))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDiscount)
+                            .addComponent(btnFreeDelivery)
+                            .addComponent(btnExtraPoints))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUpgrade)
+                .addGap(44, 44, 44))
+            .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpAccountLayout.createSequentialGroup()
+                    .addGap(258, 258, 258)
+                    .addComponent(lblDetail)
+                    .addContainerGap(261, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,7 +312,9 @@ public class AccountView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccount;
     private javax.swing.JButton btnCart;
-    private javax.swing.JButton btnDecorator;
+    private javax.swing.JButton btnDiscount;
+    private javax.swing.JButton btnExtraPoints;
+    private javax.swing.JButton btnFreeDelivery;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JEditorPane editorPaneDetail;
@@ -300,6 +330,7 @@ public class AccountView extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPoints;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUpgrade;
     private javax.swing.JScrollPane scrollPaneDetail;
     private javax.swing.JScrollPane scrollPanePurchases;
     private javax.swing.JTable tblPurchases;
