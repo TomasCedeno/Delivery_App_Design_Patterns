@@ -9,6 +9,7 @@ import db.DBFacade;
 import logic.product.Purchase;
 import logic.account.Account;
 import logic.account.User;
+import test.Out;
 
 public class AccountBuilder implements GUIBuilder {
     
@@ -92,6 +93,24 @@ public class AccountBuilder implements GUIBuilder {
                 btnUpdateActionPerformed(evt);
             }
         });
+        
+        buttons[4].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiscountActionPerformed(evt);
+            }
+        });
+        
+        buttons[5].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFreeDeliveryActionPerformed(evt);
+            }
+        });
+        
+       buttons[6].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExtraPointsActionPerformed(evt);
+            }
+        });
     }
 
     @Override
@@ -121,24 +140,20 @@ public class AccountBuilder implements GUIBuilder {
                             .addGroup(jpAccountLayout.createSequentialGroup()
                                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labels[1], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labels[2], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labels[4], javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labels[3], javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                                     .addGroup(jpAccountLayout.createSequentialGroup()
-                                        .addComponent(buttons[0], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent( buttons[0], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
-                                        .addComponent(buttons[1], javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent( buttons[1], javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(36, 36, 36)
-                                        .addComponent(buttons[3], javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent( buttons[3], javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(labels[10], javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labels[8], javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
                     .addGroup(jpAccountLayout.createSequentialGroup()
                         .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpAccountLayout.createSequentialGroup()
@@ -159,14 +174,29 @@ public class AccountBuilder implements GUIBuilder {
                                     .addComponent(textFields[0])
                                     .addComponent(textFields[1])))
                             .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addGap(125, 125, 125)
-                                .addComponent(labels[0]))
-                            .addGroup(jpAccountLayout.createSequentialGroup()
                                 .addGap(67, 67, 67)
-                                .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttons[4], javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttons[2], javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(23, 23, 23))))
+                                .addComponent(buttons[2], javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpAccountLayout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(labels[11])))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(buttons[4], javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttons[6], javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttons[5], javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                    .addContainerGap(567, Short.MAX_VALUE)
+                    .addComponent(labels[0])
+                    .addGap(124, 124, 124)))
         );
         jpAccountLayout.setVerticalGroup(
             jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +219,7 @@ public class AccountBuilder implements GUIBuilder {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labels[8])
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labels[1])
+                        .addComponent(labels[2])
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labels[5])
@@ -199,29 +229,38 @@ public class AccountBuilder implements GUIBuilder {
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labels[3])
                     .addComponent(buttons[2]))
-                .addGap(18, 18, 18)
                 .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpAccountLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(labels[9])
                         .addGap(15, 15, 15)
                         .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPanePurchases, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addComponent(scrollPanePurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buttons[0])
-                                    .addComponent(buttons[1])
-                                    .addComponent(buttons[3]))
-                                .addGap(21, 21, 21))
-                            .addGroup(jpAccountLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(labels[0])
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(55, Short.MAX_VALUE))))
-                    .addGroup(jpAccountLayout.createSequentialGroup()
-                        .addComponent(buttons[4])
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(scrollPaneDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent( buttons[0])
+                            .addComponent( buttons[1])
+                            .addComponent( buttons[3]))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttons[4])
+                            .addComponent(buttons[5])
+                            .addComponent(buttons[6]))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAccountLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labels[11])
+                .addGap(44, 44, 44))
+            .addGroup(jpAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpAccountLayout.createSequentialGroup()
+                    .addGap(258, 258, 258)
+                    .addComponent(labels[0])
+                    .addContainerGap(261, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(window.getContentPane());
@@ -306,4 +345,26 @@ public class AccountBuilder implements GUIBuilder {
         db.updateUser(user);
         mediator.notify(this, "account", userId);
     } 
+    
+    private void btnDiscountActionPerformed(ActionEvent evt) {  
+        Account account = (Account) db.getUser(userId).getAccount();
+        account.setDiscount(true);
+        db.updateAccount(account);
+        Out.show("Cuenta Mejorada, tu cuenta tiene: \n" + account.getDetail());
+    }                                           
+
+    private void btnExtraPointsActionPerformed(ActionEvent evt) {                                               
+        Account account = (Account) db.getUser(userId).getAccount();
+        account.setExtraPoints(true);
+        db.updateAccount(account);
+        Out.show("Cuenta Mejorada, tu cuenta tiene: \n" + account.getDetail());
+    }                                              
+
+    private void btnFreeDeliveryActionPerformed(ActionEvent evt) {                                                
+        Account account = (Account) db.getUser(userId).getAccount();
+        account.setFreeDelivery(true);
+        db.updateAccount(account);
+        Out.show("Cuenta Mejorada, tu cuenta tiene: \n" + account.getDetail());
+    }  
+    
 }
