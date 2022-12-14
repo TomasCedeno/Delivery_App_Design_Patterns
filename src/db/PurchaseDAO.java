@@ -56,6 +56,7 @@ public class PurchaseDAO {
                         data.getInt("account_id"),
                         data.getString("payment_method"),
                         data.getInt("total_price"));
+                p.setProducts(new ArrayList());
                 purchases.add(p);
             }
 
