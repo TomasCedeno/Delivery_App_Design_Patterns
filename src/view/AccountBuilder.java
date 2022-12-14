@@ -22,16 +22,14 @@ public class AccountBuilder implements GUIBuilder {
     private JScrollPane scrollPaneDetail;
     private JEditorPane editorPaneDetail;
     private DBFacade db;
-    private String userId = "1234"; //Debería ser pasado en el constructor
-    private User user;
-    private Account account;
+    private String userId;
     private GUIFactory factory;
+    private ViewMediator mediator;
     
-    public AccountBuilder(){
+    public AccountBuilder(ViewMediator mediator){
+        this.mediator = mediator;
         this.factory = new AccountFactory();
-        db = new DBFacade();
-        user = db.getUser(userId);
-        account = (Account) user.getAccount(); 
+        db = new DBFacade(); 
     }
     
     @Override
@@ -70,7 +68,24 @@ public class AccountBuilder implements GUIBuilder {
                 tblPurchasesMouseClicked(evt);
             }
         });
-           
+        
+        buttons[0].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+        
+        buttons[1].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartActionPerformed(evt);
+            }
+        });
+        
+        buttons[3].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountActionPerformed(evt);
+            }
+        });
     }
 
     @Override
@@ -226,8 +241,13 @@ public class AccountBuilder implements GUIBuilder {
     public JFrame getFrame() {
         return this.window;
     }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     
     private void setTblPurchases() {
+        Account account = (Account) db.getUser(userId).getAccount();
         String[] headers = {"Ref. Compra", "Valor Total", "Método de Pago"};
         tblPurchases.removeAll();
         
@@ -241,6 +261,8 @@ public class AccountBuilder implements GUIBuilder {
     }
     
     private void setUserData() {
+        User user = db.getUser(userId);
+        Account account = (Account) user.getAccount();
         labels[10].setText("Puntos: " + account.getPoints());
         labels[8].setText("Identificación: " + user.getIdentification());
         labels[1].setText("Nombre: " + user.getName());
@@ -251,11 +273,22 @@ public class AccountBuilder implements GUIBuilder {
         textFields[2].setText(user.getPassword());
     }
     
-    private void tblPurchasesMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void tblPurchasesMouseClicked(java.awt.event.MouseEvent evt) {  
+        Account account = (Account) db.getUser(userId).getAccount();
         int selectedRow = tblPurchases.getSelectedRow();
         Purchase purchase = db.getPurchasesByAccount(account.getId()).get(selectedRow);
 
         editorPaneDetail.setText(purchase.getProductsDetail());
     }
     
+    private void btnHomeActionPerformed(ActionEvent evt) {
+        mediator.notify(this, "home", userId);
+    }
+    
+    private void btnCartActionPerformed(ActionEvent evt) {
+        mediator.notify(this, "cart", userId);
+    } 
+    
+    private void btnAccountActionPerformed(ActionEvent evt) {                                        
+    } 
 }

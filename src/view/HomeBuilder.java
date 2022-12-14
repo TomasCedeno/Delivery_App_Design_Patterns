@@ -19,8 +19,11 @@ public class HomeBuilder implements GUIBuilder {
     private ProductList products;
     private Cart cart;
     private Purchase purchase;
+    private ViewMediator mediator;
+    private String userId;
     
-    public HomeBuilder(){
+    public HomeBuilder(ViewMediator mediator){
+        this.mediator = mediator;
         this.factory = new HomeFactory();    
         this.products = new HomeProductList();
         this.cart = new Cart();
@@ -74,6 +77,24 @@ public class HomeBuilder implements GUIBuilder {
         buttons[2].addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 btnBuyMouseClicked(evt);
+            }
+        });
+        
+        buttons[4].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+        
+        buttons[5].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartActionPerformed(evt);
+            }
+        });
+        
+        buttons[6].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountActionPerformed(evt);
             }
         });
     }
@@ -158,6 +179,10 @@ public class HomeBuilder implements GUIBuilder {
     public JFrame getFrame() {
         return this.window;
     }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     
     boolean band = true;
     
@@ -209,4 +234,15 @@ public class HomeBuilder implements GUIBuilder {
         DataSender ds = new BuyCommand(purchase);
         ds.sendData(p);
     }
+    
+    private void btnHomeActionPerformed(ActionEvent evt) {                                              
+    } 
+    
+    private void btnCartActionPerformed(ActionEvent evt) {                                        
+        mediator.notify(this, "cart", userId);
+    } 
+    
+    private void btnAccountActionPerformed(ActionEvent evt) {                                        
+        mediator.notify(this, "account", userId);
+    } 
 }

@@ -14,8 +14,10 @@ public class LoginBuilder implements GUIBuilder {
     private JButton[] buttons;
     private JTextField[] textFields;
     private GUIFactory factory;
+    private ViewMediator mediator;
     
-    public LoginBuilder(){
+    public LoginBuilder(ViewMediator mediator){
+        this.mediator = mediator;
         factory = new LoginFactory();        
     }
     
@@ -128,19 +130,27 @@ public class LoginBuilder implements GUIBuilder {
         return this.window;
     }
     
-    private void btnLoginActionPerformed(ActionEvent evt) {                                         
+    private void btnLoginActionPerformed(ActionEvent evt) {   
         Authenticator logreg = new VerificationLog();
         logreg.setNext(new Login());
+        
         User user = logreg.auth(this.textFields[0].getText(), this.textFields[1].getText());
-        if(user == null) { Out.show("Datos incorrectos o usuario inexistente."); }
-        else{ window.dispose(); }
+        if(user == null) { 
+            Out.show("Datos incorrectos o usuario inexistente."); 
+        } else { 
+            mediator.notify(this, "home", user.getIdentification());
+        }
     }
     
     private void btnSingUpActionPerformed(ActionEvent evt) {                                          
         Authenticator logreg = new VerificationSing();
         logreg.setNext(new SingUp());
+        
         User user = logreg.auth(this.textFields[0].getText(), this.textFields[1].getText());
-        if(user == null) { Out.show("Usuario ya existente."); }
-        else{ window.dispose(); }
+        if(user == null) {
+            Out.show("Usuario ya existente.");
+        } else{ 
+            mediator.notify(this, "home", user.getIdentification()); 
+        }
     }
 }

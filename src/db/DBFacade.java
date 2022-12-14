@@ -47,11 +47,15 @@ public class DBFacade {
      * 
      * @param email
      * @param password
-     * @return true si la contraseña es correcta
+     * @return el objeto usuario si la contraseña es correcta, null caso contrario
      */
-    public boolean logIn(String email, String password){
+    public User logIn(String email, String password){
         User user = userDAO.getByEmail(email);
-        return user.getPassword().equals(password);
+        if ( user.getPassword().equals(password) ) {
+            return user;
+        }
+    
+        return null;
     }
         
     /**

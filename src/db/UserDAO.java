@@ -50,13 +50,13 @@ public class UserDAO {
     
     public User getByIdentification(String userId){
         try {
-            user = new User("", "");
             preQuery = connection.prepareStatement(QUERIES[1]);
             
             preQuery.setString(1, userId);
             ResultSet data = preQuery.executeQuery();
             
             if (data.next()) {
+                user = new User("", "");
                 user.setIdentification(data.getString("identification"));
                 user.setEmail(data.getString("email"));
                 user.setPassword(data.getString("password"));
@@ -74,13 +74,13 @@ public class UserDAO {
     
     public User getByEmail(String email){
         try {
-            user = new User("", "");
             preQuery = connection.prepareStatement(QUERIES[2]);
             
             preQuery.setString(1, email);
             ResultSet data = preQuery.executeQuery();
-            
+
             if (data.next()) {
+                user = new User("", "");
                 user.setIdentification(data.getString("identification"));
                 user.setEmail(data.getString("email"));
                 user.setPassword(data.getString("password"));
