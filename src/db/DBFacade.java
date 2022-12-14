@@ -1,7 +1,7 @@
 package db;
 
 import java.util.ArrayList;
-import logic.account.Account;
+import logic.account.*;
 import logic.account.User;
 import logic.product.Product;
 import logic.product.Purchase;
@@ -40,6 +40,7 @@ public class DBFacade {
         Account account = new Account();
         account.setUserId(user.getIdentification());
         user.setAccount(account);
+
         return userDAO.create(user) && accountDAO.create(account);
     }
     
@@ -76,6 +77,37 @@ public class DBFacade {
      */
     public boolean updateUser(User user) {
         return userDAO.update(user);
+    }
+    
+    /**
+     * Retorna la cuenta con los beneficos asociada al usuario con id pasado por parametro
+     * @param userId el id del usuario al que pertenece la cuenta
+     * @return la cuenta con sus beneficios (decoradores agregados)
+     */
+    public AbstractAccount getAccountWithBenefits(String userId) {
+        Account account = accountDAO.getByUserId(userId);
+        AbstractAccount benefits = account;
+        
+        if (account.isDiscount()) {
+            benefits = new Discount(benefits);
+            
+        } if (account.isExtraPoints()) {
+            benefits = new ExtraPoints(benefits);
+            
+        } if (account.isFreeDelivery()) {
+            benefits = new FreeDelivery(benefits);
+        }
+        
+        return benefits;
+    }
+    
+    /**
+     * Actualiza los puntos y beneficios de la cuenta
+     * @param account
+     * @return true si se actualizo con exito
+     */
+    public boolean updateAccount(Account account) {
+        return accountDAO.update(account);
     }
     
     /**

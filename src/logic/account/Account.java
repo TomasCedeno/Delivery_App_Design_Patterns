@@ -4,6 +4,7 @@ package logic.account;
 public class Account implements AbstractAccount {      
     private int id, points;
     String userId;
+    private boolean discount, extraPoints, freeDelivery;
     private PaymentMethod paymentMethod;
     
     public Account() { points = 0; }
@@ -32,6 +33,30 @@ public class Account implements AbstractAccount {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public boolean isDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(boolean discount) {
+        this.discount = discount;
+    }
+
+    public boolean isExtraPoints() {
+        return extraPoints;
+    }
+
+    public void setExtraPoints(boolean extraPoints) {
+        this.extraPoints = extraPoints;
+    }
+
+    public boolean isFreeDelivery() {
+        return freeDelivery;
+    }
+
+    public void setFreeDelivery(boolean freeDelivery) {
+        this.freeDelivery = freeDelivery;
     }
     
     @Override
