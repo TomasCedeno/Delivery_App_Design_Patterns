@@ -86,6 +86,12 @@ public class AccountBuilder implements GUIBuilder {
                 btnAccountActionPerformed(evt);
             }
         });
+        
+        buttons[2].addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
     }
 
     @Override
@@ -289,6 +295,15 @@ public class AccountBuilder implements GUIBuilder {
         mediator.notify(this, "cart", userId);
     } 
     
-    private void btnAccountActionPerformed(ActionEvent evt) {                                        
+    private void btnAccountActionPerformed(ActionEvent evt) { 
+        mediator.notify(this, "account", userId);
+    } 
+    
+    private void btnUpdateActionPerformed(ActionEvent evt) {                                          
+        User user = db.getUser(userId);
+        user.setAddress(textFields[1].getText());
+        user.setPassword(textFields[2].getText());
+        db.updateUser(user);
+        mediator.notify(this, "account", userId);
     } 
 }

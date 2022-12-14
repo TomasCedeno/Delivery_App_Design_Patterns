@@ -235,7 +235,8 @@ public class HomeBuilder implements GUIBuilder {
         ds.sendData(p);
     }
     
-    private void btnHomeActionPerformed(ActionEvent evt) {                                              
+    private void btnHomeActionPerformed(ActionEvent evt) {   
+        mediator.notify(this, "home", userId);
     } 
     
     private void btnCartActionPerformed(ActionEvent evt) {                                        

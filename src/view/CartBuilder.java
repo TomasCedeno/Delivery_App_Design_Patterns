@@ -224,7 +224,8 @@ public class CartBuilder implements GUIBuilder {
         mediator.notify(this, "home", userId);
     }
     
-    private void btnCartActionPerformed(ActionEvent evt) {                                        
+    private void btnCartActionPerformed(ActionEvent evt) {   
+        mediator.notify(this, "cart", userId);
     } 
     
     private void btnAccountActionPerformed(ActionEvent evt) {                                        
