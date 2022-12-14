@@ -3,10 +3,6 @@ package view;
 import java.util.stream.DoubleStream;
 import javax.swing.JFrame;
 
-/**
- *
- * @author tomas
- */
 public class ViewMediator {
     
     private Director director;

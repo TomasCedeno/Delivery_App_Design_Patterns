@@ -7,7 +7,7 @@ import view.CartBuilder;
 
 public class BuilderCartTest {
     public static void main(String[] args) {
-        Director director = new Director(new CartBuilder());
+        Director director = new Director(new CartBuilder(null));
         
         JFrame myWindow = director.createFrame();
         myWindow.setVisible(true);

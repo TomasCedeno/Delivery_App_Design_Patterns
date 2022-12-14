@@ -7,7 +7,6 @@ import logic.GUIfactory.*;
 import logic.product.*;
 import logic.product.Lists.*;
 import logic.product.commands.*;
-import test.Out;
 
 public class HomeBuilder implements GUIBuilder {
     private JFrame window;
@@ -183,8 +182,6 @@ public class HomeBuilder implements GUIBuilder {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    
-    boolean band = true;
     
     private void cbSearchBarItemStateChanged(ItemEvent evt) { 
         int index = comboBoxes[0].getSelectedIndex();

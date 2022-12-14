@@ -6,7 +6,7 @@ import view.AccountBuilder;
 
 public class BuilderAccountTest {
     public static void main(String[] args) {
-        Director director = new Director(new AccountBuilder());
+        Director director = new Director(new AccountBuilder(null));
         
         JFrame myWindow = director.createFrame();
         myWindow.setVisible(true);
