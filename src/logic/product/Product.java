@@ -11,21 +11,20 @@ public class Product implements Orderable {
         this.name = name;
         this.price = price;
         this.imagePath = imagePath;
+        this.quantity = 1;
     }
     
     @Override
     public Orderable clone() {
         Product p = new Product(name, price, imagePath);
-        p.setBrand(brand); 
-        p.setColor(color);
-        p.setQuantity(quantity);
+        p.setProductView(productView);
         
         return p;
     }
 
     @Override
     public int getPrice() {
-        return this.price;
+        return this.price * this.quantity;
     }
 
     @Override
@@ -84,10 +83,10 @@ public class Product implements Orderable {
     }
     
     @Override
-    public void add(Orderable element) { }
+    public void add(Product element) { }
 
     @Override
-    public Orderable remove(int index) {
+    public Product remove(int index) {
         return null;
     }
 

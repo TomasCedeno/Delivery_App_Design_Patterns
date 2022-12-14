@@ -67,41 +67,39 @@ public class CartView extends javax.swing.JFrame {
         jpHomeLayout.setHorizontalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblTitle))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jpHomeLayout.createSequentialGroup()
-                                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCart, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpHomeLayout.createSequentialGroup()
-                                .addComponent(btnNext)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDel)
-                                .addGap(2, 2, 2)
-                                .addComponent(btnBuy1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPrevious)))))
+                .addGap(19, 19, 19)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle)
+                    .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpHomeLayout.createSequentialGroup()
+                            .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCart, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jpHomeLayout.createSequentialGroup()
+                            .addComponent(btnNext)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnDel)
+                            .addGap(2, 2, 2)
+                            .addComponent(btnBuy1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnPrevious))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
             jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(27, 27, 27)
                 .addComponent(lblTitle)
-                .addGap(363, 363, 363)
-                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNext)
-                    .addComponent(btnPrevious)
+                .addGap(352, 352, 352)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnDel)
-                        .addComponent(btnBuy1)))
+                        .addComponent(btnBuy1))
+                    .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNext)
+                        .addComponent(btnPrevious)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHome)
@@ -133,7 +131,17 @@ public class CartView extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
+    private javax.swing.JComboBox<String> cbBrand;
+    private javax.swing.JComboBox<String> cbColor;
+    private javax.swing.JComboBox<String> cbQuantity;
     private javax.swing.JPanel jpHome;
+    private javax.swing.JPanel jpProduct;
+    private javax.swing.JLabel lblBrand;
+    private javax.swing.JLabel lblColor;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

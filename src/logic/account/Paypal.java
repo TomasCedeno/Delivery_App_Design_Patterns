@@ -1,16 +1,18 @@
 
 package logic.account;
 
-import test.In; // Hay que reemplazar los In
+import test.In;
 
 public class Paypal implements PaymentMethod {
     
+    private String name;
     private String email;
     private String password;
 
     public Paypal(String email, String password) {
         this.email = email;
         this.password = password;
+        this.name = "Paypal";
     }
     
     @Override
@@ -21,5 +23,10 @@ public class Paypal implements PaymentMethod {
         }
         
         return "Pago exitoso de $"+cost+" pesos.";
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
     }
 }

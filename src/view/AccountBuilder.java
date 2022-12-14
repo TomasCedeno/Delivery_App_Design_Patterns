@@ -9,6 +9,7 @@ import db.DBFacade;
 import logic.product.Purchase;
 import logic.account.Account;
 import logic.account.User;
+import logic.product.Cart;
 import test.Out;
 
 public class AccountBuilder implements GUIBuilder {
@@ -26,6 +27,7 @@ public class AccountBuilder implements GUIBuilder {
     private String userId;
     private GUIFactory factory;
     private ViewMediator mediator;
+    private Cart cart;
     
     public AccountBuilder(ViewMediator mediator){
         this.mediator = mediator;
@@ -327,15 +329,15 @@ public class AccountBuilder implements GUIBuilder {
     }
     
     private void btnHomeActionPerformed(ActionEvent evt) {
-        mediator.notify(this, "home", userId);
+        mediator.notify(this, "home", cart, userId);
     }
     
     private void btnCartActionPerformed(ActionEvent evt) {
-        mediator.notify(this, "cart", userId);
+        mediator.notify(this, "cart", cart, userId);
     } 
     
     private void btnAccountActionPerformed(ActionEvent evt) { 
-        mediator.notify(this, "account", userId);
+        mediator.notify(this, "account", cart,  userId);
     } 
     
     private void btnUpdateActionPerformed(ActionEvent evt) {                                          
@@ -343,7 +345,7 @@ public class AccountBuilder implements GUIBuilder {
         user.setAddress(textFields[1].getText());
         user.setPassword(textFields[2].getText());
         db.updateUser(user);
-        mediator.notify(this, "account", userId);
+        mediator.notify(this, "account", cart, userId);
     } 
     
     private void btnDiscountActionPerformed(ActionEvent evt) {  
@@ -367,4 +369,7 @@ public class AccountBuilder implements GUIBuilder {
         Out.show("Cuenta Mejorada, tu cuenta tiene: \n" + account.getDetail());
     }  
     
+    public void setCart(Cart cart){
+        this.cart = cart;
+    }
 }

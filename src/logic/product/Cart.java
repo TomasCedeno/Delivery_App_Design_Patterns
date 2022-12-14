@@ -2,10 +2,14 @@
 package logic.product;
 
 import java.util.ArrayList;
+import logic.product.Lists.DownIterator;
+import logic.product.Lists.Iterator;
+import logic.product.Lists.ProductList;
+import logic.product.Lists.UpIterator;
 
-public class Cart implements Orderable {
+public class Cart implements Orderable, ProductList {
     
-    private ArrayList<Orderable> elements;
+    private ArrayList<Product> elements;
 
     public Cart() {
         this.elements = new ArrayList<>();
@@ -15,8 +19,8 @@ public class Cart implements Orderable {
     public Orderable clone() {
         Cart cartCopy = new Cart();
         
-        for(Orderable e: elements){
-            cartCopy.add(e.clone());
+        for(Product e: elements){
+            cartCopy.add((Product) e.clone());
         }
         
         return cartCopy;
@@ -47,7 +51,7 @@ public class Cart implements Orderable {
     }
 
     @Override
-    public void add(Orderable element) {
+    public void add(Product element) {
         this.elements.add(element);
     }
 
@@ -57,8 +61,22 @@ public class Cart implements Orderable {
     }
 
     @Override
-    public Orderable getElement(int index) {
+    public Product getElement(int index) {
         return this.elements.get(index);
     }
-    
+
+    @Override
+    public Iterator createUpIterator() {
+        return new UpIterator(this);
+    }
+
+    @Override
+    public Iterator createDownIterator() {
+        return new DownIterator(this);
+    }
+
+    @Override
+    public ArrayList<Product> getProducts() {
+        return this.elements;
+    } 
 }

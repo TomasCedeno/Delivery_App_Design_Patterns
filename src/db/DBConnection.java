@@ -10,7 +10,7 @@ public class DBConnection {
 
     private static DBConnection instance;
     private Connection connection;
-    private final String URL = "jdbc:postgresql://localhost:5432/Hawk";
+    private final String URL = "jdbc:postgresql://localhost:5432/hawk";
     private final String USER = "postgres";
     private final String PASSWORD = "bdpostgre1608";
     

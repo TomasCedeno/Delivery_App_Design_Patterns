@@ -6,6 +6,7 @@ import javax.swing.*;
 import logic.GUIfactory.*;
 import logic.account.User;
 import logic.authenticator.*;
+import logic.product.Cart;
 import test.Out;
 
 public class LoginBuilder implements GUIBuilder {
@@ -138,7 +139,7 @@ public class LoginBuilder implements GUIBuilder {
         if(user == null) { 
             Out.show("Datos incorrectos o usuario inexistente."); 
         } else { 
-            mediator.notify(this, "home", user.getIdentification());
+            mediator.notify(this, "home", new Cart(), user.getIdentification());
         }
     }
     
@@ -150,7 +151,7 @@ public class LoginBuilder implements GUIBuilder {
         if(user == null) {
             Out.show("Usuario ya existente.");
         } else{ 
-            mediator.notify(this, "home", user.getIdentification()); 
+            mediator.notify(this, "home", new Cart(), user.getIdentification()); 
         }
     }
 }

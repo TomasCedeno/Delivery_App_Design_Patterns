@@ -54,19 +54,19 @@ public class ProductViewFactory {
         p.getCbQuantity().setModel(new DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
     }
     
-    public static void setComboBoxes(JComboBox brands, JComboBox colors, String category){
+    private static void setComboBoxes(JComboBox brands, JComboBox colors, String category){
         switch(category){
             case "Technology":
                 brands.setModel(new DefaultComboBoxModel<>(new String[] { "Samsung", "Huawei", "Apple" }));
-                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "White", "Silver" }));
+                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Plateado" }));
                 break;
             case "Clothing":
                 brands.setModel(new DefaultComboBoxModel<>(new String[] { "Koaj", "Adidas", "Nike" }));
-                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "White", "Yellow", "Blue", "Red", "Green" }));
+                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Amarillo", "Azul", "Rojo", "Verde" }));
                 break;
             case "Furniture":
                 brands.setModel(new DefaultComboBoxModel<>(new String[] { "Jamar", "Moderline", "Series" }));
-                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Black", "Gray", "Blue", "Red", "Green", "Pink" }));
+                colors.setModel(new DefaultComboBoxModel<>(new String[] { "Negro", "Gris", "Azul", "Rojo", "Verde", "Rosado" }));
                 break;
             default: break;
         }

@@ -1,10 +1,11 @@
 
 package logic.account;
 
-import test.In; // Hay que reemplazar los In
+import test.In; 
 
 public class CreditCard implements PaymentMethod {
-    // Ejemplo
+    
+    private String name;
     private String accountNum;
     private String password;
     private String ccv;
@@ -15,6 +16,7 @@ public class CreditCard implements PaymentMethod {
         this.password = password;
         this.ccv = ccv;
         this.expirationDate = expirationDate;
+        this.name = "Tarjeta de Crédito";
     }
 
     @Override
@@ -27,5 +29,10 @@ public class CreditCard implements PaymentMethod {
         }
         
         return "Pago exitoso de $"+cost+" pesos.";
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
     }
 }

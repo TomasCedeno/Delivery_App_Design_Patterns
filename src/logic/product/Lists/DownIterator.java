@@ -9,7 +9,7 @@ public class DownIterator implements Iterator {
     
     public DownIterator(ProductList list){
         this.list = list;
-        this.currentPosition = list.getProducts().size()-1;
+        this.currentPosition = 0;
     }
 
     @Override

@@ -1,9 +1,11 @@
 
 package view;
 
+import db.DBFacade;
 import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
+import logic.account.Account;
 import logic.product.*;
 import logic.product.Lists.*;
 import logic.product.commands.*;
@@ -20,12 +22,13 @@ public class HomeBuilder implements GUIBuilder {
     private Purchase purchase;
     private ViewMediator mediator;
     private String userId;
+    private DBFacade db;
     
     public HomeBuilder(ViewMediator mediator){
         this.mediator = mediator;
         this.factory = new HomeFactory();    
         this.products = new HomeProductList();
-        this.cart = new Cart();
+        this.db = new DBFacade();
     }
     
     @Override
@@ -212,35 +215,39 @@ public class HomeBuilder implements GUIBuilder {
     }
     
     private void btnAddMouseClicked(MouseEvent evt) { 
-        Product p = products.getProducts().get(comboBoxes[0].getSelectedIndex());
+        Product p = ((Product) products.getProducts().get(comboBoxes[0].getSelectedIndex()).clone());
         p.setBrand(p.getProductView().getCbBrand().getSelectedItem().toString());
         p.setColor(p.getProductView().getCbColor().getSelectedItem().toString()); 
         p.setQuantity(Integer.parseInt(p.getProductView().getCbQuantity().getSelectedItem().toString())); 
         DataSender ds = new AddToCartCommand(cart);
-        ds.sendData(p);
+        ds.sendData(p, userId);
     }
     
     private void btnBuyMouseClicked(MouseEvent evt) { 
-        Product p = products.getProducts().get(comboBoxes[0].getSelectedIndex());
+        Product p = ((Product) products.getProducts().get(comboBoxes[0].getSelectedIndex()).clone());
         p.setBrand(p.getProductView().getCbBrand().getSelectedItem().toString());
         p.setColor(p.getProductView().getCbColor().getSelectedItem().toString()); 
         p.setQuantity(Integer.parseInt(p.getProductView().getCbQuantity().getSelectedItem().toString())); 
         
-        purchase = new Purchase(0, 0, "Nequi", 1000);
+        purchase = new Purchase(0, ((Account)db.getUser(userId).getAccount()).getId(), "", p.getPrice());
         
         DataSender ds = new BuyCommand(purchase);
-        ds.sendData(p);
+        ds.sendData(p, userId);
     }
     
     private void btnHomeActionPerformed(ActionEvent evt) {   
-        mediator.notify(this, "home", userId);
+        mediator.notify(this, "home", cart, userId);
     } 
     
     private void btnCartActionPerformed(ActionEvent evt) {                                        
-        mediator.notify(this, "cart", userId);
+        mediator.notify(this, "cart", cart, userId);
     } 
     
     private void btnAccountActionPerformed(ActionEvent evt) {                                        
-        mediator.notify(this, "account", userId);
+        mediator.notify(this, "account", cart, userId);
     } 
+    
+    public void setCart(Cart cart){
+        this.cart = cart;
+    }
 }

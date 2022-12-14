@@ -2,6 +2,7 @@
 package logic.product.commands;
 
 import logic.product.*;
+import test.Out;
 
 public class AddToCartCommand implements DataSender {
     private Cart receiver;
@@ -11,7 +12,15 @@ public class AddToCartCommand implements DataSender {
     }
 
     @Override
-    public void sendData(Product p) {
-        receiver.add(p.clone());
+    public void sendData(Orderable p, String userId) {
+        for(Product product: receiver.getProducts()){
+            if(((Product) p).getName().equals(product.getName())){
+                Out.show("Ya has agregado este producto.");
+                return ;
+            }
+        }
+        
+        receiver.add((Product) p);
+        Out.show("Producto agregado a tu carrito.");
     }
 }

@@ -13,6 +13,7 @@ public class Purchase {
         this.accountId = accountId;
         this.paymentMethod = paymentMethod;
         this.totalPrice = totalPrice;
+        this.products = new ArrayList<>();
     }
 
     public int getId() {
