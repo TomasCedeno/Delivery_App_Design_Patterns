@@ -1,13 +1,6 @@
 package logic.product;
 
 public class Product implements Orderable {
-    
-    /*
-    Nota: la marca, color y cantidad se settearán cuando se agrege el producto al carrito o se compre
-    this.brand = productView.getCbBrand().getSelectedItem().toString();
-    this.color = productView.getCbColor().getSelectedItem().toString();
-    this.quantity = Integer.parseInt(productView.getCbQuantity().getSelectedItem().toString());
-    */
 
     private String name, imagePath, color, brand;
     private int quantity;
@@ -22,7 +15,12 @@ public class Product implements Orderable {
     
     @Override
     public Orderable clone() {
-        return new Product(name, price, imagePath);
+        Product p = new Product(name, price, imagePath);
+        p.setBrand(brand); 
+        p.setColor(color);
+        p.setQuantity(quantity);
+        
+        return p;
     }
 
     @Override
@@ -86,8 +84,7 @@ public class Product implements Orderable {
     }
     
     @Override
-    public void add(Orderable element) {
-    }
+    public void add(Orderable element) { }
 
     @Override
     public Orderable remove(int index) {

@@ -40,7 +40,7 @@ public class DBTestDrive {
         
         products.add(pc);
         products.add(phone);
-        Purchase purchase = new Purchase(9000, account.getId(), "En especie", products, 0);
+        Purchase purchase = new Purchase(9000, account.getId(), "En especie", 0);
         db.createPurchase(purchase);
         
         ArrayList<Purchase> purchases = db.getPurchasesByAccount(account.getId());

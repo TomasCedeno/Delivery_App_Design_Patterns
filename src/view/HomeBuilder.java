@@ -4,7 +4,10 @@ package view;
 import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
+import logic.product.*;
 import logic.product.Lists.*;
+import logic.product.commands.*;
+import test.Out;
 
 public class HomeBuilder implements GUIBuilder {
     private JFrame window;
@@ -14,10 +17,13 @@ public class HomeBuilder implements GUIBuilder {
     private JComboBox[] comboBoxes;
     private GUIFactory factory;
     private ProductList products;
+    private Cart cart;
+    private Purchase purchase;
     
     public HomeBuilder(){
         this.factory = new HomeFactory();    
         this.products = new HomeProductList();
+        this.cart = new Cart();
     }
     
     @Override
@@ -56,6 +62,18 @@ public class HomeBuilder implements GUIBuilder {
         buttons[1].addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 btnNextMouseClicked(evt);
+            }
+        });
+        
+        buttons[3].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
+        
+        buttons[2].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnBuyMouseClicked(evt);
             }
         });
     }
@@ -169,5 +187,26 @@ public class HomeBuilder implements GUIBuilder {
         Iterator it = products.createUpIterator();
         it.setCurrentPosition(comboBoxes[0].getSelectedIndex());
         if(it.hasMore()) comboBoxes[0].setSelectedItem(it.getNextProduct().getName());
+    }
+    
+    private void btnAddMouseClicked(MouseEvent evt) { 
+        Product p = products.getProducts().get(comboBoxes[0].getSelectedIndex());
+        p.setBrand(p.getProductView().getCbBrand().getSelectedItem().toString());
+        p.setColor(p.getProductView().getCbColor().getSelectedItem().toString()); 
+        p.setQuantity(Integer.parseInt(p.getProductView().getCbQuantity().getSelectedItem().toString())); 
+        DataSender ds = new AddToCartCommand(cart);
+        ds.sendData(p);
+    }
+    
+    private void btnBuyMouseClicked(MouseEvent evt) { 
+        Product p = products.getProducts().get(comboBoxes[0].getSelectedIndex());
+        p.setBrand(p.getProductView().getCbBrand().getSelectedItem().toString());
+        p.setColor(p.getProductView().getCbColor().getSelectedItem().toString()); 
+        p.setQuantity(Integer.parseInt(p.getProductView().getCbQuantity().getSelectedItem().toString())); 
+        
+        purchase = new Purchase(0, 0, "Nequi", 1000);
+        
+        DataSender ds = new BuyCommand(purchase);
+        ds.sendData(p);
     }
 }

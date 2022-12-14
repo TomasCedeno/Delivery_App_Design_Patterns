@@ -6,6 +6,9 @@ import javax.swing.*;
 import logic.GUIfactory.*;
 import logic.product.Lists.*;
 import logic.product.Product;
+import logic.product.Purchase;
+import logic.product.commands.*;
+import test.Out;
 
 public class CartBuilder implements GUIBuilder {
     private JFrame window;
@@ -15,6 +18,7 @@ public class CartBuilder implements GUIBuilder {
     private GUIFactory factory;
     private ProductList products;
     private Iterator itUp, itDown;
+    private Purchase purchase;
     
     public CartBuilder(){
         this.factory = new CartFactory();    
@@ -53,6 +57,18 @@ public class CartBuilder implements GUIBuilder {
                 btnPreviousMouseClicked(evt);
             }
         });
+        
+        buttons[2].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnBuyMouseClicked(evt);
+            }
+        });
+        
+        buttons[3].addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                btnDelMouseClicked(evt);
+            }
+        });
     }
 
     @Override
@@ -61,60 +77,63 @@ public class CartBuilder implements GUIBuilder {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jpCart = new JPanel(); 
         
-        GroupLayout jpHomeLayout = new GroupLayout(jpCart);
+        javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpCart);
         jpCart.setLayout(jpHomeLayout);
         jpHomeLayout.setHorizontalGroup(
-            jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
-                .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(labels[0])
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
+                        .addComponent(labels[0]))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jpHomeLayout.createSequentialGroup()
-                                .addComponent(buttons[3], GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttons[4], GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttons[5], GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buttons[4], javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttons[5], javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttons[6], javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpHomeLayout.createSequentialGroup()
                                 .addComponent(buttons[0])
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttons[2], GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttons[3])
+                                .addGap(2, 2, 2)
+                                .addComponent(buttons[2])
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttons[1])))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jpHomeLayout.setVerticalGroup(
-            jpHomeLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHomeLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(labels[0])
                 .addGap(363, 363, 363)
-                .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[0])
-                    .addComponent(buttons[2])
-                    .addComponent(buttons[1]))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpHomeLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[3])
+                    .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttons[2])
+                        .addComponent(buttons[1])))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttons[4])
-                    .addComponent(buttons[5]))
+                    .addComponent(buttons[5])
+                    .addComponent(buttons[6]))
                 .addContainerGap())
         );
 
-        GroupLayout layout = new GroupLayout(window.getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(window.getContentPane());
         window.getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jpCart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpCart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jpCart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         window.pack();
@@ -151,5 +170,28 @@ public class CartBuilder implements GUIBuilder {
             jpCart.add(p.getProductView());
             window.validate();
         }
+    }
+    
+    private void btnBuyMouseClicked(MouseEvent evt) { 
+        for(int i=0;i<products.getProducts().size();i++){
+            products.getProducts().get(i).setBrand(products.getProducts().get(i).getProductView().getCbBrand().getSelectedItem().toString());
+            products.getProducts().get(i).setColor(products.getProducts().get(i).getProductView().getCbColor().getSelectedItem().toString()); 
+            products.getProducts().get(i).setQuantity(Integer.parseInt(products.getProducts().get(i).getProductView().getCbQuantity().getSelectedItem().toString())); 
+        }
+        
+        purchase = new Purchase(0, 0, "Nequi", 1000);
+        
+        DataSender ds = new BuyCommand(purchase);
+        
+        for(int i=0;i<products.getProducts().size();i++){
+            ds.sendData(products.getProducts().get(i));
+        }
+        
+        Out.show(purchase.getProductsDetail());
+    }
+    
+    private void btnDelMouseClicked(MouseEvent evt) { 
+        products.getProducts().remove(0);
+        window.validate();
     }
 }

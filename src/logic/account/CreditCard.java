@@ -26,8 +26,6 @@ public class CreditCard implements PaymentMethod {
             return "Datos incorrectos.";
         }
         
-        // Tal vez descuente saldo
-        
         return "Pago exitoso de $"+cost+" pesos.";
     }
 }

@@ -30,10 +30,11 @@ public class CartView extends javax.swing.JFrame {
         lblTitle = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
         btnPrevious = new javax.swing.JButton();
-        btnBuy = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         btnCart = new javax.swing.JButton();
         btnAccount = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnBuy1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,9 +47,6 @@ public class CartView extends javax.swing.JFrame {
         btnPrevious.setFont(new java.awt.Font("Cooper Black", 1, 18)); // NOI18N
         btnPrevious.setText(">");
 
-        btnBuy.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
-        btnBuy.setText("Comprar");
-
         btnHome.setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         btnHome.setText("Inicio");
 
@@ -58,6 +56,12 @@ public class CartView extends javax.swing.JFrame {
         btnAccount.setFont(new java.awt.Font("Lucida Fax", 0, 12)); // NOI18N
         btnAccount.setText("Cuenta");
 
+        btnDel.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
+        btnDel.setText("Eliminar");
+
+        btnBuy1.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
+        btnBuy1.setText("Comprar");
+
         javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
         jpHome.setLayout(jpHomeLayout);
         jpHomeLayout.setHorizontalGroup(
@@ -66,8 +70,7 @@ public class CartView extends javax.swing.JFrame {
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(lblTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblTitle))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpHomeLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -80,7 +83,9 @@ public class CartView extends javax.swing.JFrame {
                             .addGroup(jpHomeLayout.createSequentialGroup()
                                 .addComponent(btnNext)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDel)
+                                .addGap(2, 2, 2)
+                                .addComponent(btnBuy1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPrevious)))))
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -93,8 +98,10 @@ public class CartView extends javax.swing.JFrame {
                 .addGap(363, 363, 363)
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNext)
-                    .addComponent(btnBuy)
-                    .addComponent(btnPrevious))
+                    .addComponent(btnPrevious)
+                    .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDel)
+                        .addComponent(btnBuy1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHome)
@@ -117,45 +124,12 @@ public class CartView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CartView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CartView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccount;
-    private javax.swing.JButton btnBuy;
+    private javax.swing.JButton btnBuy1;
     private javax.swing.JButton btnCart;
+    private javax.swing.JButton btnDel;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;

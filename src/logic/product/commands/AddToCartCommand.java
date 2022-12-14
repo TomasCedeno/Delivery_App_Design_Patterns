@@ -12,9 +12,6 @@ public class AddToCartCommand implements DataSender {
 
     @Override
     public void sendData(Product p) {
-        // Toma los datos extrínsecos que están en la interfaz
-        // Solicita los datos intrínsecos del producto, desde la fábrica
-        
-        receiver.add(new Product("nombre", 2000, "source"));
+        receiver.add(p.clone());
     }
 }

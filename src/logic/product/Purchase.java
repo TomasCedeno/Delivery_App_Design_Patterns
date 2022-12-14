@@ -8,11 +8,10 @@ public class Purchase {
     private String paymentMethod;
     private ArrayList<Product> products;
 
-    public Purchase(int id, int accountId, String paymentMethod, ArrayList<Product> products, int totalPrice) {
+    public Purchase(int id, int accountId, String paymentMethod, int totalPrice) {
         this.id = id;
         this.accountId = accountId;
         this.paymentMethod = paymentMethod;
-        this.products = products;
         this.totalPrice = totalPrice;
     }
 
@@ -46,6 +45,10 @@ public class Purchase {
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
+    }
+    
+    public void addProduct(Product product) {
+        this.products.add(product);
     }
 
     public int getTotalPrice() {

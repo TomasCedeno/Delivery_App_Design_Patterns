@@ -3,7 +3,7 @@ package logic.product;
 
 import java.util.ArrayList;
 
-public class Cart implements Orderable{
+public class Cart implements Orderable {
     
     private ArrayList<Orderable> elements;
 
@@ -53,7 +53,7 @@ public class Cart implements Orderable{
 
     @Override
     public Orderable remove(int index) {
-        return this.remove(index);
+        return this.elements.remove(index);
     }
 
     @Override

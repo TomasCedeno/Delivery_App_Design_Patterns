@@ -26,6 +26,7 @@ public class CartFactory implements GUIFactory {
         buttons[3] = new JButton();
         buttons[4] = new JButton();
         buttons[5] = new JButton();
+        buttons[6] = new JButton();
         
         buttons[0].setFont(new Font("Cooper Black", 1, 18)); 
         buttons[0].setText("<");
@@ -35,15 +36,18 @@ public class CartFactory implements GUIFactory {
         
         buttons[2].setFont(new Font("Lucida Fax", 0, 14)); 
         buttons[2].setText("Comprar");
-        
-        buttons[3].setFont(new Font("Lucida Fax", 0, 12)); 
-        buttons[3].setText("Inicio");
 
+        buttons[3].setFont(new Font("Lucida Fax", 0, 14)); 
+        buttons[3].setText("Eliminar");
+        
         buttons[4].setFont(new Font("Lucida Fax", 0, 12)); 
-        buttons[4].setText("Carrito");
+        buttons[4].setText("Inicio");
 
         buttons[5].setFont(new Font("Lucida Fax", 0, 12)); 
-        buttons[5].setText("Cuenta");
+        buttons[5].setText("Carrito");
+
+        buttons[6].setFont(new Font("Lucida Fax", 0, 12)); 
+        buttons[6].setText("Cuenta");
         
         return buttons;
     }
