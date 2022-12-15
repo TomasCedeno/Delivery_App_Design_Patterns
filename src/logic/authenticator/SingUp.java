@@ -5,15 +5,15 @@ import db.DBFacade;
 import logic.account.User;
 
 public class SingUp extends Authenticator{
-    private String identification, name, lastName, birthday, address;
+    private String identification, name, lastName, birthDay, address;
     private DBFacade db;
 
-    public SingUp(String identification, String name, String lastName, String birthday, String address) {
+    public SingUp(String identification, String name, String lastName, String birthDay, String address) {
         db = new DBFacade();
         this.identification = identification;
         this.name = name;
         this.lastName = lastName;
-        this.birthday = birthday;
+        this.birthDay = birthDay;
         this.address = address;
     }
     
@@ -23,7 +23,7 @@ public class SingUp extends Authenticator{
         user.setIdentification(identification);
         user.setName(name);
         user.setLastName(lastName);
-        user.setBirthDay(birthday);
+        user.setBirthDay(birthDay);
         user.setAddress(address);
 
         return db.signUp(user) ? user : null;
