@@ -1,6 +1,7 @@
 
 package view;
 
+import Launcher.*;
 import db.DBFacade;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,7 +10,7 @@ import logic.account.Account;
 import logic.product.Lists.*;
 import logic.product.*;
 import logic.product.commands.*;
-import Launcher.Out;
+import logic.account.*;
 
 public class CartBuilder implements GUIBuilder {
     private JFrame window;
@@ -204,9 +205,12 @@ public class CartBuilder implements GUIBuilder {
         
         purchase = new Purchase(0, ((Account)db.getUser(userId).getAccount()).getId(), "", cartClone.getPrice());
         
-        DataSender ds = new BuyCommand(purchase);
+        AbstractAccount account = db.getAccountWithBenefits(userId);
+        if(account.getPaymentMethod() == null) account.setPaymentMethod(setNewPaymentMethod());
+        
+        DataSender ds = new BuyCommand(purchase, account);
                 
-        ds.sendData(cartClone, userId);
+        Out.show(ds.sendData(cartClone, userId));
     }
     
     private void btnDelMouseClicked(MouseEvent evt) { 
@@ -242,5 +246,33 @@ public class CartBuilder implements GUIBuilder {
             jpCart.add(p.getProductView());
             window.validate();   
         }
+    }
+    
+    private PaymentMethod setNewPaymentMethod(){
+        PaymentMethod newPaymentMethod = null;
+        String option = In.read("¿Qué método de pago desea usar?\n1) Tarjeta de crédito\n2) Nequi\n3) Paypal");
+        
+        switch(option){
+            case "1": 
+                newPaymentMethod = new CreditCard(
+                        In.read("Número de cuenta: "), 
+                        In.read("Contraseña: "), 
+                        In.read("CCV: "), 
+                        In.read("Fecha de expiración: "));
+                break;
+            case "2":
+                newPaymentMethod = new Nequi(
+                        In.read("Número de cuenta: "), 
+                        In.read("Contraseña: "));
+                break;
+            case "3":
+                newPaymentMethod = new Paypal(
+                        In.read("E-mail de la cuenta: "), 
+                        In.read("Contraseña: "));
+                break;
+            default: Out.show(option + " no está entre las opciones."); break;
+        }
+        
+        return newPaymentMethod;
     }
 }

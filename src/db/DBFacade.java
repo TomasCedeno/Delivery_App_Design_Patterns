@@ -3,7 +3,6 @@ package db;
 import java.util.ArrayList;
 import logic.account.*;
 import logic.account.User;
-import logic.product.Product;
 import logic.product.Purchase;
 
 

@@ -1,11 +1,13 @@
 
 package view;
 
+import Launcher.*;
 import db.DBFacade;
 import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
-import logic.account.Account;
+import logic.account.AbstractAccount;
+import logic.account.*;
 import logic.product.*;
 import logic.product.Lists.*;
 import logic.product.commands.*;
@@ -220,7 +222,7 @@ public class HomeBuilder implements GUIBuilder {
         p.setColor(p.getProductView().getCbColor().getSelectedItem().toString()); 
         p.setQuantity(Integer.parseInt(p.getProductView().getCbQuantity().getSelectedItem().toString())); 
         DataSender ds = new AddToCartCommand(cart);
-        ds.sendData(p, userId);
+        Out.show(ds.sendData(p, userId));
     }
     
     private void btnBuyMouseClicked(MouseEvent evt) { 
@@ -231,8 +233,11 @@ public class HomeBuilder implements GUIBuilder {
         
         purchase = new Purchase(0, ((Account)db.getUser(userId).getAccount()).getId(), "", p.getPrice());
         
-        DataSender ds = new BuyCommand(purchase);
-        ds.sendData(p, userId);
+        AbstractAccount account = db.getAccountWithBenefits(userId);
+        if(account.getPaymentMethod() == null) account.setPaymentMethod(setNewPaymentMethod());
+        
+        DataSender ds = new BuyCommand(purchase, account);
+        Out.show(ds.sendData(p, userId));
     }
     
     private void btnHomeActionPerformed(ActionEvent evt) {   
@@ -249,5 +254,33 @@ public class HomeBuilder implements GUIBuilder {
     
     public void setCart(Cart cart){
         this.cart = cart;
+    }
+    
+    private PaymentMethod setNewPaymentMethod(){
+        PaymentMethod newPaymentMethod = null;
+        String option = In.read("¿Qué método de pago desea usar?\n1) Tarjeta de crédito\n2) Nequi\n3) Paypal");
+        
+        switch(option){
+            case "1": 
+                newPaymentMethod = new CreditCard(
+                        In.read("Número de cuenta: "), 
+                        In.read("Contraseña: "), 
+                        In.read("CCV: "), 
+                        In.read("Fecha de expiración: "));
+                break;
+            case "2":
+                newPaymentMethod = new Nequi(
+                        In.read("Número de cuenta: "), 
+                        In.read("Contraseña: "));
+                break;
+            case "3":
+                newPaymentMethod = new Paypal(
+                        In.read("E-mail de la cuenta: "), 
+                        In.read("Contraseña: "));
+                break;
+            default: Out.show(option + " no está entre las opciones."); break;
+        }
+        
+        return newPaymentMethod;
     }
 }

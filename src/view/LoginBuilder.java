@@ -1,6 +1,7 @@
 
 package view;
 
+import Launcher.In;
 import java.awt.event.*;
 import javax.swing.*;
 import logic.GUIfactory.*;
@@ -145,9 +146,16 @@ public class LoginBuilder implements GUIBuilder {
     
     private void btnSingUpActionPerformed(ActionEvent evt) {                                          
         Authenticator logreg = new VerificationSing();
-        logreg.setNext(new SingUp());
+        logreg.setNext(new SingUp(
+                In.read("Ingresa tu identifcación: "), 
+                In.read("Ingresa tu nombre: "), 
+                In.read("Ingresa tu apellido: "),
+                In.read("Ingresa tu fecha de nacimiento: "),
+                In.read("Ingresa tu dirección: ")
+        ));
         
         User user = logreg.auth(this.textFields[0].getText(), this.textFields[1].getText());
+        
         if(user == null) {
             Out.show("Usuario ya existente.");
         } else{ 

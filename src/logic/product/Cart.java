@@ -2,10 +2,7 @@
 package logic.product;
 
 import java.util.ArrayList;
-import logic.product.Lists.DownIterator;
-import logic.product.Lists.Iterator;
-import logic.product.Lists.ProductList;
-import logic.product.Lists.UpIterator;
+import logic.product.Lists.*;
 
 public class Cart implements Orderable, ProductList {
     

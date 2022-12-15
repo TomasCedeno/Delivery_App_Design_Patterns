@@ -1,7 +1,7 @@
 
 package logic.account;
 
-import Launcher.In;
+import logic.paymentcompanies.PaypalCompany;
 
 public class Paypal implements PaymentMethod {
     
@@ -17,12 +17,11 @@ public class Paypal implements PaymentMethod {
     
     @Override
     public String pay(int cost) {
-        if(!In.read("Correo electrónico de la cuenta: ").equals(this.email) ||  
-                !In.read("Contraseña: ").equals(this.password)){
-            return "Datos incorrectos.";
+        if(PaypalCompany.verifyPaypalAccount(email, password)){
+            if(PaypalCompany.registPay(email, cost)) return "Pago exitoso de $"+cost+" pesos.";
         }
         
-        return "Pago exitoso de $"+cost+" pesos.";
+        return "Datos incorrectos.";
     }
     
     @Override

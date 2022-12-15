@@ -1,7 +1,7 @@
 
 package logic.account;
 
-import Launcher.In; 
+import logic.paymentcompanies.Bank;
 
 public class CreditCard implements PaymentMethod {
     
@@ -21,14 +21,11 @@ public class CreditCard implements PaymentMethod {
 
     @Override
     public String pay(int cost) {
-        if(!In.read("Número de cuenta: ").equals(this.accountNum) || 
-                !In.read("Fecha de caducidad: ").equals(this.expirationDate) || 
-                !In.read("Contraseña: ").equals(this.password) || 
-                !In.read("CCV: ").equals(this.ccv)){
-            return "Datos incorrectos.";
+        if(Bank.verifyCreditCard(accountNum, ccv, password)){
+            if(Bank.registPay(accountNum, cost)) return "Pago exitoso de $"+cost+" pesos.";
         }
         
-        return "Pago exitoso de $"+cost+" pesos.";
+        return "Datos incorrectos.";
     }
     
     @Override

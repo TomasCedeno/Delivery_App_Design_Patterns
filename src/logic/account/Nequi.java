@@ -1,7 +1,7 @@
 
 package logic.account;
 
-import Launcher.In;
+import logic.paymentcompanies.NequiCompany;
 
 public class Nequi implements PaymentMethod {
     
@@ -17,12 +17,11 @@ public class Nequi implements PaymentMethod {
     
     @Override
     public String pay(int cost) {
-        if(!In.read("Número de cuenta: ").equals(this.accountNum) ||  
-                !In.read("Contraseña: ").equals(this.password)){
-            return "Datos incorrectos.";
+        if(NequiCompany.verifyNequiAccount(accountNum, password)){
+            if(NequiCompany.registPay(accountNum, cost)) return "Pago exitoso de $"+cost+" pesos.";
         }
         
-        return "Pago exitoso de $"+cost+" pesos.";
+        return "Datos incorrectos.";
     }
 
     @Override

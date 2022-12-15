@@ -3,20 +3,28 @@ package logic.authenticator;
 
 import db.DBFacade;
 import logic.account.User;
-import Launcher.In;
 
 public class SingUp extends Authenticator{
+    private String identification, name, lastName, birthday, address;
+    private DBFacade db;
 
-    private DBFacade db = new DBFacade();
+    public SingUp(String identification, String name, String lastName, String birthday, String address) {
+        db = new DBFacade();
+        this.identification = identification;
+        this.name = name;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.address = address;
+    }
     
     @Override
     public User auth(String email, String password) {
         User user = new User(email, password);
-        user.setIdentification(In.read("Ingresa tu identifcación: "));
-        user.setName(In.read("Ingresa tu nombre: "));
-        user.setLastName(In.read("Ingresa tu apellido: "));
-        user.setBirthDay(In.read("Ingresa tu fecha de nacimiento: "));
-        user.setAddress(In.read("Ingresa tu dirección:: "));
+        user.setIdentification(identification);
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setBirthDay(birthday);
+        user.setAddress(address);
 
         return db.signUp(user) ? user : null;
     }
