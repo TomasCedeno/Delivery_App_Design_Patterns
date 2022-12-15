@@ -1,8 +1,8 @@
-package test;
+package Launcher;
 
 import view.ViewMediator;
 
-public class ViewMediatorTest {
+public class ViewMediatorLauncher {
     
     public static void main(String[] args) {
         ViewMediator mediator = new ViewMediator();

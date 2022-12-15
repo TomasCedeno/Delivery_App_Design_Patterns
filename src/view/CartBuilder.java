@@ -9,7 +9,7 @@ import logic.account.Account;
 import logic.product.Lists.*;
 import logic.product.*;
 import logic.product.commands.*;
-import test.Out;
+import Launcher.Out;
 
 public class CartBuilder implements GUIBuilder {
     private JFrame window;

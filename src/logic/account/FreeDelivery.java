@@ -8,7 +8,7 @@ public class FreeDelivery extends Benefits {
 
     @Override
     public String pay(int cost) {
-        cost -= 2000;  
+        cost -= 5000;  
         String answer = account.pay(cost);
         
         if(!answer.equals("Datos incorrectos.")){
@@ -16,5 +16,10 @@ public class FreeDelivery extends Benefits {
         }
         
         return answer;
+    }
+    
+    @Override
+    public int getCost() {
+        return this.account.getCost();
     }
 }

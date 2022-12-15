@@ -3,7 +3,7 @@ package logic.authenticator;
 
 import db.DBFacade;
 import logic.account.User;
-import test.In;
+import Launcher.In;
 
 public class SingUp extends Authenticator{
 
@@ -11,7 +11,6 @@ public class SingUp extends Authenticator{
     
     @Override
     public User auth(String email, String password) {
-        // Se crea un usuario con los nuevos datos
         User user = new User(email, password);
         user.setIdentification(In.read("Ingresa tu identifcación: "));
         user.setName(In.read("Ingresa tu nombre: "));

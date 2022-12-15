@@ -10,7 +10,7 @@ import logic.product.Purchase;
 import logic.account.Account;
 import logic.account.User;
 import logic.product.Cart;
-import test.Out;
+import Launcher.Out;
 
 public class AccountBuilder implements GUIBuilder {
     

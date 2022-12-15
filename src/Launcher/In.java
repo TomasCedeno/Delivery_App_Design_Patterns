@@ -1,5 +1,5 @@
 
-package test;
+package Launcher;
 
 import javax.swing.JOptionPane;
 

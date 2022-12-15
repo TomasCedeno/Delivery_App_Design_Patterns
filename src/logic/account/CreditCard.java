@@ -1,7 +1,7 @@
 
 package logic.account;
 
-import test.In; 
+import Launcher.In; 
 
 public class CreditCard implements PaymentMethod {
     

@@ -17,4 +17,9 @@ public class ExtraPoints extends Benefits {
         
         return answer;
     }
+    
+    @Override
+    public int getCost() {
+        return this.account.getCost();
+    }
 }

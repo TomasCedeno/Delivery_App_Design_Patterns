@@ -2,11 +2,10 @@
 package logic.product.commands;
 
 import db.DBFacade;
-import java.util.ArrayList;
 import logic.account.*;
 import logic.product.*;
-import test.In;
-import test.Out;
+import Launcher.In;
+import Launcher.Out;
 
 public class BuyCommand implements DataSender{
     private Purchase receiver;
@@ -20,6 +19,7 @@ public class BuyCommand implements DataSender{
     public void sendData(Orderable p, String userId) {
         DBFacade db = new DBFacade();
         account = db.getAccountWithBenefits(userId);
+        Account userAccount = (Account) db.getUser(userId).getAccount();
         
         if(account.getPaymentMethod() == null) account.setPaymentMethod(setNewPaymentMethod());
         
@@ -27,7 +27,6 @@ public class BuyCommand implements DataSender{
             account.setPaymentMethod(setNewPaymentMethod());
         } else{
             String message = account.pay(p.getPrice());
-            Out.show(message);
             if(!message.equals("Datos incorrectos.")) {
                 try{
                     receiver.addProduct((Product) p);
@@ -35,9 +34,14 @@ public class BuyCommand implements DataSender{
                     receiver.setProducts(((Cart) p).getProducts());
                 }
             }
+            
+            userAccount.setPoints(account.getPoints());
+            db.updateAccount(userAccount);
+            Out.show(message);
         }
         
         receiver.setPaymentMethod(account.getPaymentMethod().getName());
+        receiver.setTotalPrice(account.getCost());
         db.createPurchase(receiver);
     }
     

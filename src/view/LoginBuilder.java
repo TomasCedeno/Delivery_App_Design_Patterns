@@ -7,7 +7,7 @@ import logic.GUIfactory.*;
 import logic.account.User;
 import logic.authenticator.*;
 import logic.product.Cart;
-import test.Out;
+import Launcher.Out;
 
 public class LoginBuilder implements GUIBuilder {
     private JFrame window;

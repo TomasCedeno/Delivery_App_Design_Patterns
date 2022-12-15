@@ -7,4 +7,5 @@ public interface AbstractAccount {
     public void setPoints(int points);
     public PaymentMethod getPaymentMethod();
     public void setPaymentMethod(PaymentMethod paymentMethod);
+    public int getCost();
 }

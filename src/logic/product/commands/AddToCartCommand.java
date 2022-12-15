@@ -2,7 +2,7 @@
 package logic.product.commands;
 
 import logic.product.*;
-import test.Out;
+import Launcher.Out;
 
 public class AddToCartCommand implements DataSender {
     private Cart receiver;

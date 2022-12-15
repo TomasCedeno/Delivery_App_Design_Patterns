@@ -10,7 +10,6 @@ public class VerificationLog extends Authenticator {
     
     @Override
     public User auth(String email, String password) { 
-        // Verifica que exista un usuario con el email pasado
         if (db.userExists(email)){
             return next.auth(email, password);
         }

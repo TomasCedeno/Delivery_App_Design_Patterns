@@ -2,7 +2,7 @@
 package logic.account;
 
 public class Account implements AbstractAccount {      
-    private int id, points;
+    private int id, points, cost;
     String userId;
     private boolean discount, extraPoints, freeDelivery;
     private PaymentMethod paymentMethod;
@@ -11,6 +11,7 @@ public class Account implements AbstractAccount {
     
     @Override
     public String pay(int cost) {
+        this.cost = cost;
         String answer = paymentMethod.pay(cost);
         if(!answer.equals("Datos incorrectos.")){
             points += 5;
@@ -85,5 +86,10 @@ public class Account implements AbstractAccount {
     @Override
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    @Override
+    public int getCost() {
+        return this.cost;
     }
 }

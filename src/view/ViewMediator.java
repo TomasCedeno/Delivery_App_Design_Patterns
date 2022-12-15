@@ -1,6 +1,5 @@
 package view;
 
-import java.util.stream.DoubleStream;
 import javax.swing.JFrame;
 import logic.product.Cart;
 

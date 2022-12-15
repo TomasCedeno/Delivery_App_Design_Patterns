@@ -9,7 +9,6 @@ public class Login extends Authenticator {
     
     @Override
     public User auth(String email, String password) {
-        // Se cargan los datos del usuario ya existente
         return db.logIn(email, password);     
     }
     
